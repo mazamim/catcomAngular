@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/script.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -92,9 +94,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/alertifyjs/build/css/alertify.min.css",
+              "node_modules/alertifyjs/build/css/themes/bootstrap.min.css",
+              "node_modules/alertifyjs/build/css/themes/semantic.min.css"
+
+
             ],
-            "scripts": []
+            "scripts": [ "node_modules/alertifyjs/build/alertify.min.js"]
           }
         },
         "lint": {
@@ -123,6 +130,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "catcom-admin"
+    }
+  },
+  "defaultProject": "catcom-admin",
+  "cli": {
+    "analytics": false
+  }
 }

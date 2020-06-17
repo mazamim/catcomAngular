@@ -1,0 +1,168 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+        <div class="row pt-md-5 mt-md-3 mb-5">
+
+
+
+
+
+
+
+                    <div class="col-xl-6">
+                      <h4 class="text-muted mb-4">Employees</h4>
+                      <div id="accordion">
+                        <div class="card">
+                          <div class="card-header">
+                            <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseOne">
+                              <img src="https://randomuser.me/api/portraits/men/91.jpg" width="50" class="mr-3 rounded">
+                              Mohammed Mazahim - 0458 665 900
+                            </button>
+                          </div>
+                          <div class="collapse show" id="collapseOne" data-parent="#accordion">
+                            <div class="card-body">
+                              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseTwo">
+                              <img src="https://randomuser.me/api/portraits/men/41.jpg" width="50" class="mr-3 rounded">
+                              Mark - 0458 900 500
+                            </button>
+                          </div>
+                          <div class="collapse" id="collapseTwo" data-parent="#accordion">
+                            <div class="card-body">
+                              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseThree">
+                              <img src="https://randomuser.me/api/portraits/men/92.jpg" width="50" class="mr-3 rounded">
+                              Monica - 0458 800 987
+                            </button>
+                          </div>
+                          <div class="collapse" id="collapseThree" data-parent="#accordion">
+                            <div class="card-body">
+                              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseFour">
+                              <img src="https://randomuser.me/api/portraits/men/93.jpg" width="50" class="mr-3 rounded">
+                              Vivien - 0459 654 321
+                            </button>
+                          </div>
+                          <div class="collapse" id="collapseFour" data-parent="#accordion">
+                            <div class="card-body">
+                              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseFive">
+                              <img src="https://randomuser.me/api/portraits/men/50.jpg" width="50" class="mr-3 rounded">
+                              Nick - 0321 987 654
+                            </button>
+                          </div>
+                          <div class="collapse" id="collapseFive" data-parent="#accordion">
+                            <div class="card-body">
+                              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="card-header">
+                            <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseSix">
+                              <img src="https://randomuser.me/api/portraits/men/60.jpg" width="50" class="mr-3 rounded">
+                              Ann - 0321 666 333
+                            </button>
+                          </div>
+                          <div class="collapse" id="collapseSix" data-parent="#accordion">
+                            <div class="card-body">
+                              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="col-xl-5 mt-5">
+
+                    <form #sumbitform="ngForm" (ngSubmit)="createNewRecord()" autocomplete="off">
+
+                      <div class="form-group">
+                        <label>FULL NAME</label>
+                        <input name="FullName" #FullName="ngModel" [(ngModel)]="name" class="form-control">
+
+                      </div>
+                      <div class="form-group">
+                        <label>POSITION</label>
+                        <input name="Position" #Position="ngModel" [(ngModel)]="position" class="form-control">
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>EMP CODE</label>
+                          <input name="EMPCode" #EMPCode="ngModel" [(ngModel)]="code" class="form-control">
+                        </div>
+                        <div class="form-group  col-md-6">
+                          <label>MOBILE</label>
+                          <input name="Mobile" #Mobile="ngModel" [(ngModel)]="phone" class="form-control">
+                        </div>
+
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-block">SUBMIT</button>
+                      </div>
+                    </form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+  </div>
+</section>
+
+
+
+
+
+
+
