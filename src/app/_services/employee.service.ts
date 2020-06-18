@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
-import { IEmployee } from '../_model/employee';
+
 import { AlertifyService } from './alertify.service';
+import { Employee } from '../_model/employee';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+  formData: Employee;
+  constructor(private firestore: AngularFirestore) { }
 
-  constructor(private fireservice:AngularFirestore,
-    private alert:AlertifyService) { }
 
-  createNewEmployee(record:any)
-  {
-		return this.fireservice.collection('Employee').add(record);
-
+  getEmployees() {
+    return this.firestore.collection('employees').snapshotChanges();
   }
+
 }

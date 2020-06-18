@@ -21,6 +21,8 @@ import { environment } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {FormsModule} from '@angular/forms';
+import { EmployeeService } from './_services/employee.service';
+import { EmployeelistComponent } from './employees/employeelist/employeelist.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {FormsModule} from '@angular/forms';
     FooterComponent,
     HomeComponent,
     SectionHeaderComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    EmployeelistComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import {FormsModule} from '@angular/forms';
 
 
   ],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
