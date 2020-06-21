@@ -36,7 +36,26 @@
                           <div *ngIf="fullName.invalid && fullName.touched" class="validation-error">This field is required.</div>
                         </div>
                         <div class="form-group">
-                          <input name="position" #position="ngModel" [(ngModel)]="model.position" class="form-control" placeholder="Position">
+                          <div class="input-group">
+                            <select
+                            class="custom-select"
+                            id="inputGroupSelect04"
+                            name="position"
+                            #position="ngModel"
+                            [(ngModel)]="model.position"
+
+                            >
+                              <option selected>Choose...</option>
+                              <option value="Technician">Technician</option>
+                              <option value="Admin">Admin</option>
+                              <option value="CEO">CEO</option>
+                              <option value="Labour">Labour</option>
+                            </select>
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button">Add</button>
+                            </div>
+                          </div>
+
                         </div>
                         <div class="form-row">
                           <div class="form-group col-md-6">

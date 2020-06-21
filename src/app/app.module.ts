@@ -23,6 +23,9 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {FormsModule} from '@angular/forms';
 import { EmployeeService } from './_services/employee.service';
 import { EmployeelistComponent } from './employees/employeelist/employeelist.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { EmployeelistComponent } from './employees/employeelist/employeelist.com
     HomeComponent,
     SectionHeaderComponent,
     EmployeesComponent,
-    EmployeelistComponent
+    EmployeelistComponent,
+    ExpensesComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,7 @@ import { EmployeelistComponent } from './employees/employeelist/employeelist.com
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     FormsModule,
+    BsDatepickerModule.forRoot(),
 
 
   ],
