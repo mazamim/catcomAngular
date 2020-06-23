@@ -10,20 +10,20 @@ export class ExpensesService {
   constructor(private firestore: AngularFirestore) { }
 
 
-  create_NewStudent(record:any) {
-    return this.firestore.collection('Students').add(record);
+  create_expenses(record:any) {
+    return this.firestore.collection('Expenses').add(record);
   }
 
-  read_Students() {
-    return this.firestore.collection('Students').snapshotChanges();
+  read_expenses() {
+    return this.firestore.collection('Expenses').snapshotChanges();
   }
 
-  update_Student(recordID,record){
-    this.firestore.doc('Students/' + recordID).update(record);
+  update_expenses(recordID,record){
+    this.firestore.doc('Expenses/' + recordID).update(record);
   }
 
-  delete_Student(record_id) {
-    this.firestore.doc('Students/' + record_id).delete();
+  delete_expense(record_id) {
+    this.firestore.doc('Expenses/' + record_id).delete();
   }
 
 

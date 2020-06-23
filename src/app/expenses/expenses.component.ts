@@ -18,10 +18,10 @@ export class ExpensesComponent implements OnInit {
   bsValue = new Date();
   expensesForm: FormGroup;
 
-  students: any;
-  studentName: string;
-  studentAge: number;
-  studentAddress: string;
+  expenses: any;
+  tdate: Date;
+  amount: number;
+  paymentmode: string;
 
 
   constructor(private service: ExpensesService,
@@ -31,31 +31,31 @@ export class ExpensesComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.service.read_Students().subscribe(data => {
+    this.service.read_expenses().subscribe(data => {
 
-      this.students = data.map(e => {
+      this.expenses = data.map(e => {
         return {
           id: e.payload.doc.id,
           isEdit: false,
-          Name: e.payload.doc.data()['Name'],
-          Age: e.payload.doc.data()['Age'],
-          Address: e.payload.doc.data()['Address'],
+          tdate: e.payload.doc.data()['tdate'],
+          amount: e.payload.doc.data()['amount'],
+          paymentmode: e.payload.doc.data()['paymentmode'],
         };
       })
-      console.log(this.students);
+      console.log(this.expenses);
 
     })
   }
 
   CreateRecord() {
     let record = {};
-    record['Name'] = this.studentName;
-    record['Age'] = this.studentAge;
-    record['Address'] = this.studentAddress;
-    this.service.create_NewStudent(record).then(resp => {
-      this.studentName = "";
-      this.studentAge = undefined;
-      this.studentAddress = "";
+    record['tDate'] = this.tdate;
+    record['amount'] = this.amount;
+    record['paymentmode'] = this.paymentmode;
+    this.service.create_expenses(record).then(resp => {
+      this.tdate = undefined;
+      this.amount = undefined;
+      this.paymentmode = "";
       console.log(resp);
     })
       .catch(error => {
@@ -64,22 +64,22 @@ export class ExpensesComponent implements OnInit {
   }
 
   RemoveRecord(rowID) {
-    this.service.delete_Student(rowID);
+    this.service.delete_expense(rowID);
   }
 
   EditRecord(record) {
     record.isEdit = true;
-    record.EditName = record.Name;
-    record.EditAge = record.Age;
-    record.EditAddress = record.Address;
+    record.EditTDate = record.tDate;
+    record.EditAmount = record.amount;
+    record.EditPaymentmode = record.paymentMode;
   }
 
   UpdateRecord(recordRow) {
     let record = {};
-    record['Name'] = recordRow.EditName;
-    record['Age'] = recordRow.EditAge;
+    record['tdate'] = recordRow.EditName;
+    record['paymentMode'] = recordRow.EditAge;
     record['Address'] = recordRow.EditAddress;
-    this.service.update_Student(recordRow.id, record);
+    this.service.update_expenses(recordRow.id, record);
     recordRow.isEdit = false;
   }
 
