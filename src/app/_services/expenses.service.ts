@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Expenses } from '../_model/expenses';
+import { analytics } from 'firebase';
+import { Timestamp } from '@firebase/firestore-types';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,9 @@ import { Expenses } from '../_model/expenses';
 export class ExpensesService {
 
   constructor(private firestore: AngularFirestore) { }
-
+  expenses:any;
+  filterExpenses:any;
+  filters = {};
 
   create_expenses(record:any) {
     return this.firestore.collection('Expenses').add(record);
@@ -25,6 +29,8 @@ export class ExpensesService {
   delete_expense(record_id) {
     this.firestore.doc('Expenses/' + record_id).delete();
   }
+
+
 
 
 }

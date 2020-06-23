@@ -5,6 +5,7 @@ import { AlertifyService } from '../_services/alertify.service';
 import { Expenses } from '../_model/expenses';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker/bs-datepicker.config';
+import { Timestamp } from '@firebase/firestore-types';
 
 @Component({
   selector: 'app-expenses',
@@ -19,9 +20,10 @@ export class ExpensesComponent implements OnInit {
   expensesForm: FormGroup;
 
   expenses: any;
-  tdate: Date;
+  tdate: Timestamp ;
   amount: number;
   paymentmode: string;
+  describtion: string;
 
 
   constructor(private service: ExpensesService,
@@ -40,6 +42,7 @@ export class ExpensesComponent implements OnInit {
           tdate: e.payload.doc.data()['tdate'],
           amount: e.payload.doc.data()['amount'],
           paymentmode: e.payload.doc.data()['paymentmode'],
+          describtion: e.payload.doc.data()['describtion'],
         };
       })
       console.log(this.expenses);
@@ -52,10 +55,12 @@ export class ExpensesComponent implements OnInit {
     record['tDate'] = this.tdate;
     record['amount'] = this.amount;
     record['paymentmode'] = this.paymentmode;
+    record['describtion'] = this.describtion;
     this.service.create_expenses(record).then(resp => {
       this.tdate = undefined;
       this.amount = undefined;
       this.paymentmode = "";
+      this.describtion = "";
       console.log(resp);
     })
       .catch(error => {
@@ -72,6 +77,7 @@ export class ExpensesComponent implements OnInit {
     record.EditTDate = record.tDate;
     record.EditAmount = record.amount;
     record.EditPaymentmode = record.paymentMode;
+    record.describtion = record.describtion;
   }
 
   UpdateRecord(recordRow) {
@@ -79,6 +85,8 @@ export class ExpensesComponent implements OnInit {
     record['tdate'] = recordRow.EditName;
     record['paymentMode'] = recordRow.EditAge;
     record['Address'] = recordRow.EditAddress;
+    record['amount'] = recordRow.EditAmount;
+    record['describtion'] = recordRow.EditDescribtion;
     this.service.update_expenses(recordRow.id, record);
     recordRow.isEdit = false;
   }

@@ -2,12 +2,24 @@
                    <section>
                     <div class="container-fluid">
                       <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
-                        <div class="row pt-md-5 mt-md-3 mb-5">
-                      
-                      
-                      <div class="row" style="margin-top: 25px;">
-                        <div class="col-md-3">
-                          <input type="text" class="form-control" [(ngModel)]="tdate" placeholder="Date">
+                        <div class="row">
+
+
+                      <div class="row pt-md-5 mt-md-3 mb-5" style="margin-top: 25px;">
+                        <div class="col-md-2">
+
+
+                          <input type="text"
+                          placeholder="Datepicker"
+                          class="form-control"
+                          [(ngModel)]="tdate"
+                          placeholder="Date"
+                          id="datepic"
+                          bsDatepicker
+                          [bsConfig]="{ isAnimated: true }">
+
+
+
                         </div>
                         <div class="col-md-2">
                           <input type="text" class="form-control" [(ngModel)]="paymentmode" placeholder="paymentode">
@@ -17,103 +29,45 @@
                           <input type="text" class="form-control" [(ngModel)]="amount" placeholder="amount">
                         </div>
 
-                        <div class="col-md-2">
-                          <input type="text" class="form-control" [(ngModel)]="amount" placeholder="amount">
+                        <div class="col-md-3">
+                          <input type="text" class="form-control" [(ngModel)]="describtion" placeholder="describtion">
                         </div>
                         <div class="col-md-3">
-                          <button type="button" (click)="CreateRecord()" [disabled]="!tdate || !paymentmode || !amount" class="btn btn-primary">+
+                          <button type="button" (click)="CreateRecord()" [disabled]="!tdate || !paymentmode || !amount || !describtion" class="btn btn-primary">+
                             Add Expenses</button>
                         </div>
                       </div>
-                      <div class="row" style="margin-top: 25px;">
-                        <div class="col-md-12">
 
 
-                          <table class="table table-dark table-hover">
-                            <thead>
-                              <tr>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Email</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
-                              </tr>
-                              <tr>
-                                <td>Mary</td>
-                                <td>Moe</td>
-                                <td>mary@example.com</td>
-                              </tr>
-                              <tr>
-                                <td>July</td>
-                                <td>Dooley</td>
-                                <td>july@example.com</td>
-                              </tr>
-                            </tbody>
-                          </table>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10">
+
+
+          <table class="table table-dark table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Payment Mode</th>
+                <th>Describtion</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of expenses">
+                <td>{{ item.tDate | date:'mediumDate' }}</td>
+                <td>{{item.paymentmode}}</td>
+                <td>{{item.describtion}}</td>
+                <td>{{item.amount}}</td>
+              </tr>
+            </tbody>
+          </table>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          <div class="card" style="width: 18rem;" *ngFor="let item of expenses">
-                            <div class="card-body" *ngIf="!item.isEdit; else elseBlock">
-                              <h5 class="card-title">{{item.Name}}</h5>
-                              <h6 class="card-subtitle mb-2 text-muted">Age: {{item.Age}} Years</h6>
-                              <p class="card-text">Address: {{item.Address}}</p>
-                              <a class="card-link" (click)="EditRecord(item)">Edit</a>
-                              <a  class="card-link" (click)="RemoveRecord(item.id)">Delete</a>
-                            </div>
-                            <ng-template #elseBlock>
-                              <div class="card-body">
-                                <h5 class="card-title">Edit</h5>
-                                <div class="form-group">
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <input type="text" class="form-control" [(ngModel)]="item.EditTDate" placeholder="Edit Date">
-                                    </div>
-                                    <div class="col-md-12">
-                                      <input type="text" class="form-control" [(ngModel)]="item.EditAmount" placeholder="Edit Amount">
-                                    </div>
-                                    <div class="col-md-12">
-                                      <input type="text" class="form-control" [(ngModel)]="item.EditPaymentmode" placeholder="Edit Payment Mode">
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <a class="card-link" (click)="item.isEdit = false">Cancel</a>
-                                <a class="card-link" (click)="UpdateRecord(item)">Update</a>
-                              </div>
-                            </ng-template>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-
-               
-
-
-      </div>          
+        </div>
+      </div>
 
 </div>
 </div>
