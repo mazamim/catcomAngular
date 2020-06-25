@@ -20,11 +20,11 @@ export class ExpensesComponent implements OnInit {
   expensesForm: FormGroup;
 
   expenses: any;
-  tdate: Timestamp ;
+  tdate: number ;
   amount: number;
   paymentmode: string;
   describtion: string;
-
+  dateToday: number = Date.now();
 
   constructor(private service: ExpensesService,
     private firestore: AngularFirestore
@@ -32,6 +32,8 @@ export class ExpensesComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+    this.service.addQuery();
 
     this.service.read_expenses().subscribe(data => {
 

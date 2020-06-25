@@ -22,7 +22,13 @@
 
                         </div>
                         <div class="col-md-2">
-                          <input type="text" class="form-control" [(ngModel)]="paymentmode" placeholder="paymentode">
+
+                          <select class="form-control" name="paymentmode" [(ngModel)]="paymentmode" placeholder="Cash">
+                            <option>Cash</option>
+                            <option>Card</option>
+                          </select>
+
+
                         </div>
 
                         <div class="col-md-2">
@@ -33,7 +39,7 @@
                           <input type="text" class="form-control" [(ngModel)]="describtion" placeholder="describtion">
                         </div>
                         <div class="col-md-3">
-                          <button type="button" (click)="CreateRecord()" [disabled]="!tdate || !paymentmode || !amount || !describtion" class="btn btn-primary">+
+                          <button type="button" (click)="CreateRecord()" [disabled]="!tdate || !paymentmode || !amount || !describtion" class="btn btn-success">+
                             Add Expenses</button>
                         </div>
                       </div>
@@ -44,23 +50,28 @@
       <div class="row">
         <div class="col-md-10">
 
-
-          <table class="table table-dark table-hover">
-            <thead>
-              <tr>
+          <table class="table bg-light text-center table-hover">
+            <thead style="background-color: darkgray;">
+              <tr class="text-muted">
+                <th>#</th>
                 <th>Date</th>
                 <th>Payment Mode</th>
                 <th>Describtion</th>
                 <th>Amount</th>
+
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of expenses">
-                <td>{{ item.tDate | date:'mediumDate' }}</td>
+              <tr *ngFor="let item of expenses; index as i">
+                <th>{{i+1}}</th>
+                <td>{{ tdate.toString() | date}}</td>
                 <td>{{item.paymentmode}}</td>
                 <td>{{item.describtion}}</td>
                 <td>{{item.amount}}</td>
+                <td><button type="button" class="btn btn-info btn-sm mr-3">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm ml-3">Delete</button></td>
               </tr>
+
             </tbody>
           </table>
 

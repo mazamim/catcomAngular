@@ -16,16 +16,24 @@ import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 
 import {BreadcrumbModule} from 'xng-breadcrumb';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
-import { EmployeesComponent } from './employees/employees.component';
+
 import { environment } from 'src/environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { EmployeeService } from './_services/employee.service';
-import { EmployeelistComponent } from './employees/employeelist/employeelist.component';
+
 import { ExpensesComponent } from './expenses/expenses.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AddStudentComponent } from './student/add-student/add-student.component';
+import { EditStudentComponent } from './student/edit-student/edit-student.component';
+import { StudentListComponent } from './student/student-list/student-list.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
+
 
 
 @NgModule({
@@ -39,10 +47,15 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     FooterComponent,
     HomeComponent,
     SectionHeaderComponent,
-    EmployeesComponent,
-    EmployeelistComponent,
+
+
     ExpensesComponent,
-    TasksComponent
+    TasksComponent,
+    AddStudentComponent,
+    EditStudentComponent,
+    StudentListComponent,
+    EmployeeListComponent,
+    EmployeeAddComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +67,10 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AngularFireDatabaseModule,
     FormsModule,
     BsDatepickerModule.forRoot(),
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+    NgxPaginationModule
+
 
 
   ],

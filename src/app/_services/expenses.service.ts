@@ -9,27 +9,30 @@ import { Timestamp } from '@firebase/firestore-types';
 })
 export class ExpensesService {
 
-  constructor(private firestore: AngularFirestore) { }
-  expenses:any;
-  filterExpenses:any;
-  filters = {};
+  constructor(private db: AngularFirestore) { }
+
 
   create_expenses(record:any) {
-    return this.firestore.collection('Expenses').add(record);
+    return this.db.collection('Expenses').add(record);
   }
 
   read_expenses() {
-    return this.firestore.collection('Expenses').snapshotChanges();
+    return this.db.collection('Expenses').snapshotChanges();
   }
 
   update_expenses(recordID,record){
-    this.firestore.doc('Expenses/' + recordID).update(record);
+    this.db.doc('Expenses/' + recordID).update(record);
   }
 
   delete_expense(record_id) {
-    this.firestore.doc('Expenses/' + record_id).delete();
+    this.db.doc('Expenses/' + record_id).delete();
   }
 
+
+addQuery(){
+
+  this.db.collection('Expenses').valueChanges().subscribe(val=>console.log(val));
+}
 
 
 
