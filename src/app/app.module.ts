@@ -33,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
 
@@ -69,7 +70,9 @@ import { EmployeeAddComponent } from './employee/employee-add/employee-add.compo
     BsDatepickerModule.forRoot(),
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AccordionModule.forRoot(),
+ 
 
 
 

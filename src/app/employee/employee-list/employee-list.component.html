@@ -6,28 +6,20 @@
 
           <div class="col-xl-6">
             <h4 class="text-muted mb-4">Employees</h4>
-            <div id="accordion">
-              <div class="card" *ngFor="let item of Employee">
-                <div class="card-header">
-                  <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse" data-target="#collapseOne">
-                    <img src="https://randomuser.me/api/portraits/men/91.jpg" width="50" class="mr-3 rounded">
-                    {{item.firstName}} {{item.lastName}}
-                  </button>
-                </div>
-                <div class="collapse show" id="collapseOne" data-parent="#accordion">
-                  <div class="card-body">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis earum modi delectus fugiat consectetur eaque harum obcaecati, saepe id vitae, dolore aliquam! Quos, doloribus quisquam.
-                  </div>
-                </div>
-              </div>
 
-            </div>
+            <accordion [isAnimated]="true" *ngFor="let item of Employee">
+              <accordion-group heading = "{{item.firstName}} {{item.lastName}}">
+                <img src="assets/images/user.png" width="50" class="mr-3 rounded">
+              </accordion-group>
+         
+            </accordion>
+
           </div>
 
 
 
 
-          <div class="col-xl-5 mt-5">
+          <div class="col-xl-6 mt-5">
 
               <app-employee-add></app-employee-add>
 
