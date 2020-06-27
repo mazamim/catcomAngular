@@ -24,7 +24,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { EmployeeService } from './_services/employee.service';
 
 import { ExpensesComponent } from './expenses/expenses.component';
-import { TasksComponent } from './tasks/tasks.component';
+
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AddStudentComponent } from './student/add-student/add-student.component';
 import { EditStudentComponent } from './student/edit-student/edit-student.component';
@@ -34,6 +34,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { TaskAddComponent } from './task/task-add/task-add.component';
+import { TaskListComponent } from './task/task-list/task-list.component';
+import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 
 
 
@@ -51,12 +54,15 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 
     ExpensesComponent,
-    TasksComponent,
+
     AddStudentComponent,
     EditStudentComponent,
     StudentListComponent,
     EmployeeListComponent,
-    EmployeeAddComponent
+    EmployeeAddComponent,
+    TaskAddComponent,
+    TaskListComponent,
+    EmployeeEditComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     ReactiveFormsModule,
     NgxPaginationModule,
     AccordionModule.forRoot(),
- 
+
 
 
 

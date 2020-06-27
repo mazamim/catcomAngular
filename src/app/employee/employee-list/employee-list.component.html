@@ -9,9 +9,35 @@
 
             <accordion [isAnimated]="true" *ngFor="let item of Employee">
               <accordion-group heading = "{{item.firstName}} {{item.lastName}}">
-                <img src="assets/images/user.png" width="50" class="mr-3 rounded">
+
+
+
+                <div class="p-2">
+                  <img src="assets/images/user.png"
+                      class="img-fluid" style="max-height: 50px;">
+                  <div class="ml-3 d-inline-block align-middle">
+                      <h5 class="mb-0">
+                          <a routerLink=""
+                              class="text-dark">{{item.mobileNumber}}</a>
+                      </h5>
+                      <span
+                          class="text-muted font-weight-normal font-italic d-block">Email:
+                          {{item.email}}</span>
+                  </div>
+
+
+                  <div class="d-flex flex-row-reverse">
+                    <div class="p-2">  <button type="button" class="btn btn-danger btn-sm ml-3">Delete</button></div>
+                   <div class="p-2"><button type="button" class="btn btn-info btn-sm ml-3">Edit</button></div>
+                  </div>
+
+              </div>
+
+
+
+
               </accordion-group>
-         
+
             </accordion>
 
           </div>

@@ -1,0 +1,40 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+        <div class="row pt-md-5 mt-md-3 mb-5">
+
+
+  <h4 class="text-muted p-3 mb-3">Tasks:</h4>
+
+  <div class="container-fluid bg-white" *ngFor="let item of myTask">
+    <div class="row py-3 mb-4 task-border align-items-center">
+      <div class="col-1">
+        <input type="checkbox" checked>
+      </div>
+      <div class="col-sm-9 col-8">
+      {{item.describtion}}
+      </div>
+      <div class="col-1">
+        <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i class="fas fa-edit fa-lg text-success mr-2"></i></a>
+      </div>
+      <div class="col-1">
+        <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i class="fas fa-trash-alt fa-lg text-danger"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6 mt-5">
+
+<app-task-add></app-task-add>
+
+
+  </div>
+
+
+</div>
+</div>
+</div>
+
+</div>
+</section>

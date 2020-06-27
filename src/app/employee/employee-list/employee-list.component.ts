@@ -14,7 +14,7 @@ export class EmployeeListComponent implements OnInit {
   hideWhenNoStudent: boolean = false; // Hide students data table when no student.
   noData: boolean = false;            // Showing No Student Message, when no student in database.
   preLoader: boolean = true;          // Showing Preloader to show user data is coming for you from thre server(A tiny UX Shit)
-
+  oneAtATime: boolean = true;
 
 
   constructor(
