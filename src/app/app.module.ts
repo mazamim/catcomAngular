@@ -37,6 +37,10 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { TaskAddComponent } from './task/task-add/task-add.component';
 import { TaskListComponent } from './task/task-list/task-list.component';
 import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
+import { ClientAddComponent } from './client/client-add/client-add.component';
+import { ClientListComponent } from './client/client-list/client-list.component';
+import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
+import { ProjectsAddComponent } from './projects/projects-add/projects-add.component';
 
 
 
@@ -62,7 +66,11 @@ import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.co
     EmployeeAddComponent,
     TaskAddComponent,
     TaskListComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    ClientAddComponent,
+    ClientListComponent,
+    ProjectsListComponent,
+    ProjectsAddComponent
   ],
   imports: [
     BrowserModule,
