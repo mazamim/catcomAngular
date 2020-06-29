@@ -17,10 +17,9 @@ const routes: Routes = [
 
   { path: 'expenses', component: ExpensesComponent, data: { breadcrumb: 'Expenses' }},
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
-  { path: 'projects', component: EmployeeListComponent, data: { breadcrumb: 'Employees' }},
-  { path: 'employees', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
+  { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
+  { path: 'employees', component: EmployeeListComponent, data: { breadcrumb: 'Employees' }},
   { path: 'clients', component: ClientListComponent, data: { breadcrumb: 'Clients' }},
-  { path: 'addemp', component: EmployeeAddComponent, data: { breadcrumb: 'Add Employees' }},
   { path: 'register', component: AddStudentComponent },
   { path: 'edit/:id', component: EditStudentComponent }
 
