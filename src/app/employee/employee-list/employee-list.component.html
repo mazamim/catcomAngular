@@ -10,8 +10,6 @@
             <accordion [isAnimated]="true" *ngFor="let item of Employee">
               <accordion-group heading = "{{item.firstName}} {{item.lastName}}">
 
-
-
                 <div class="p-2">
                   <img src="assets/images/user.png"
                       class="img-fluid" style="max-height: 50px;">
@@ -25,25 +23,17 @@
                           {{item.email}}</span>
                   </div>
 
-
                   <div class="d-flex flex-row-reverse">
-                    <div class="p-2">  <button type="button" class="btn btn-danger btn-sm ml-3">Delete</button></div>
-                   <div class="p-2"><button type="button" class="btn btn-info btn-sm ml-3">Edit</button></div>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteEmployee(item)">Delete</button>
                   </div>
 
               </div>
-
-
-
 
               </accordion-group>
 
             </accordion>
 
           </div>
-
-
-
 
           <div class="col-xl-6 mt-5">
 
