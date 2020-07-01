@@ -17,12 +17,14 @@ export class ToolService {
       qty: mytools.qty,
       category: mytools.category,
       describtion: mytools.describtion
-    
+
     })
   }
 
-  GetToolListbyCat(cat: string) {
-    
+  GetToolListbyCat() {
+
+    this.toolsRef = this.db.list('/tasks-list', ref => ref.orderByChild('taskname').equalTo('test'));
+        return this.toolsRef;
   }
 
 
