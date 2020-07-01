@@ -41,6 +41,8 @@ import { ClientAddComponent } from './client/client-add/client-add.component';
 import { ClientListComponent } from './client/client-list/client-list.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectsAddComponent } from './projects/projects-add/projects-add.component';
+import { ToolsAddComponent } from './tools/tools-add/tools-add.component';
+import { ToolsListComponent } from './tools/tools-list/tools-list.component';
 
 
 
@@ -70,7 +72,9 @@ import { ProjectsAddComponent } from './projects/projects-add/projects-add.compo
     ClientAddComponent,
     ClientListComponent,
     ProjectsListComponent,
-    ProjectsAddComponent
+    ProjectsAddComponent,
+    ToolsAddComponent,
+    ToolsListComponent
   ],
   imports: [
     BrowserModule,
