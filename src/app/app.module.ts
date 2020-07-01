@@ -43,6 +43,8 @@ import { ProjectsListComponent } from './projects/projects-list/projects-list.co
 import { ProjectsAddComponent } from './projects/projects-add/projects-add.component';
 import { ToolsAddComponent } from './tools/tools-add/tools-add.component';
 import { ToolsListComponent } from './tools/tools-list/tools-list.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { PhotoEditorComponent } from './employee/photo-editor/photo-editor.component';
 
 
 
@@ -74,7 +76,8 @@ import { ToolsListComponent } from './tools/tools-list/tools-list.component';
     ProjectsListComponent,
     ProjectsAddComponent,
     ToolsAddComponent,
-    ToolsListComponent
+    ToolsListComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,7 @@ import { ToolsListComponent } from './tools/tools-list/tools-list.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     AccordionModule.forRoot(),
+    FileUploadModule
 
 
 
