@@ -1,8 +1,10 @@
-export class Employee {
-  $key: string;
-  firstName: string;
-  lastName: string;
-  email: string
-  mobileNumber: Number;
-  position:string;
+export interface IEmployee {
+
+  id: number;
+  emp_name: string;
+  lastname: string;
+  position: string;
+  mobile: string
+  emailadd: string;
+  description:string;
 }

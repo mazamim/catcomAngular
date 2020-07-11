@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/firestore';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
-import { AlertifyService } from './alertify.service';
-import { Employee } from '../_model/employee';
+import { IEmployee } from '../_model/employee';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Photo } from '../_model/photo';
 
 
 
@@ -11,50 +11,52 @@ import { Employee } from '../_model/employee';
 })
 export class EmployeeService {
 
-  employeesRef: AngularFireList<any>;
-  employeeRef: AngularFireObject<any>
+
+  baseUrl = environment.apiUrl;
 
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private http: HttpClient) { }
 
-   // Create Employee
-   AddEmployee(employee: Employee) {
-    this.employeesRef.push({
-      firstName: employee.firstName,
-      lastName: employee.lastName,
-      email: employee.email,
-      mobileNumber: employee.mobileNumber,
-      position:employee.position
-    })
-  }
+
+   AddEmployee(employee: IEmployee) {
+
+    return this.http.post<IEmployee>(this.baseUrl + 'employee', employee );
+}
 
      // Fetch Single employee Object
-     GetEmployee(id: string) {
-      this.employeeRef = this.db.object('employee-list/' + id);
-      return this.employeeRef;
+     GetEmployee(id: number) {
+      return this.http.get<IEmployee>(this.baseUrl + 'employee/' + id);
     }
 
 
     GetEmployeeList() {
-      this.employeesRef = this.db.list('employee-list');
-      return this.employeesRef;
+      return this.http.get<IEmployee[]>(this.baseUrl + 'employees');
     }
 
-          // Update employee Object
-  UpdateEmployee(employee: Employee) {
-    this.employeeRef.update({
-      firstName: employee.firstName,
-      lastName: employee.lastName,
-      email: employee.email,
-      mobileNumber: employee.mobileNumber,
-      position: employee.position
-    })
+
+  UpdateEmployee(employee: IEmployee) {
+
   }
 
   // Delete Student Object
-  DeleteEmployee(id: string) {
-    this.employeeRef = this.db.object('employee-list/'+id);
-    this.employeeRef.remove();
+  DeleteEmployee(id: number) {
+    return this.http.delete<IEmployee>(this.baseUrl + 'employee/'+id);
+  }
+
+
+  ReadDocuments(id:number)
+  {
+
+    return this.http.get<Photo[]>(this.baseUrl + 'employeepic/' + id);
+
+  }
+  postFile(caption: string, fileToUpload: File) {
+    const endpoint = 'http://127.0.0.1:8000/api/employeecloud/1';
+    const formData: FormData = new FormData();
+    formData.append('image', fileToUpload, fileToUpload.name);
+    formData.append('ImageCaption', caption);
+    return this.http
+      .post(endpoint, formData);
   }
 
 }

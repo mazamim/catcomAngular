@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -18,8 +18,7 @@ import {BreadcrumbModule} from 'xng-breadcrumb';
 import { SectionHeaderComponent } from './components/section-header/section-header.component';
 
 import { environment } from 'src/environments/environment';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireDatabaseModule} from '@angular/fire/database';
+
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { EmployeeService } from './_services/employee.service';
 
@@ -46,7 +45,7 @@ import { ToolsListComponent } from './tools/tools-list/tools-list.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PhotoEditorComponent } from './employee/photo-editor/photo-editor.component';
 
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -85,15 +84,15 @@ import { PhotoEditorComponent } from './employee/photo-editor/photo-editor.compo
     BrowserAnimationsModule,
     BreadcrumbModule,
     BsDropdownModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     FormsModule,
     BsDatepickerModule.forRoot(),
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     NgxPaginationModule,
     AccordionModule.forRoot(),
-    FileUploadModule
+    FileUploadModule,
+    HttpClientModule,
+    TabsModule.forRoot()
 
 
 

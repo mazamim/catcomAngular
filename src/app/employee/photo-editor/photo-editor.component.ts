@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Photo } from 'src/app/_model/photo';
 import { FileUploader } from 'ng2-file-upload';
+import { environment } from 'src/environments/environment';
+import { EmployeeService } from 'src/app/_services/employee.service';
 
 @Component({
   selector: 'app-photo-editor',
@@ -8,14 +10,19 @@ import { FileUploader } from 'ng2-file-upload';
   styleUrls: ['./photo-editor.component.scss']
 })
 export class PhotoEditorComponent implements OnInit {
+  imageUrl: string = "../../assets/image/user.png";
+  fileToUpload: File = null;
+
+
+
   @Input() photos: Photo[];
-  @Output() getMemberPhotoChange = new EventEmitter<string>();
+
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
-  //baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
   currentMain: Photo;
 
-  constructor() { }
+  constructor(private imageService:EmployeeService ) { }
 
   ngOnInit(): void {
     this.initializeUploader();
@@ -27,6 +34,7 @@ export class PhotoEditorComponent implements OnInit {
 
   initializeUploader() {
     this.uploader = new FileUploader({
+      url:'http://127.0.0.1:8000/api/employeecloud/1',
 
 
       isHTML5: true,
@@ -43,8 +51,8 @@ this.uploader.onAfterAddingFile = (file) => {file.withCredentials=false;};
         const res: Photo = JSON.parse(response);
         const photo = {
           id: res.id,
+          emp_id:res.emp_id,
           url: res.url,
-          dateAdded: res.dateAdded,
           description: res.description,
           isMain: res.isMain
         };
@@ -53,6 +61,28 @@ this.uploader.onAfterAddingFile = (file) => {file.withCredentials=false;};
   }
     };
 
+}
+
+handleFileInput(file: FileList) {
+  this.fileToUpload = file.item(0);
+
+  //Show image preview
+  var reader = new FileReader();
+  reader.onload = (event:any) => {
+    this.imageUrl = event.target.result;
+  }
+  reader.readAsDataURL(this.fileToUpload);
+}
+
+OnSubmit(Caption,Image){
+ this.imageService.postFile(Caption.value,this.fileToUpload).subscribe(
+   data =>{
+     console.log('done');
+     Caption.value = null;
+     Image.value = null;
+     this.imageUrl = "/assets/img/default-image.png";
+   }
+ );
 }
 
 }

@@ -10,6 +10,7 @@ import { TaskListComponent } from './task/task-list/task-list.component';
 import { ClientListComponent } from './client/client-list/client-list.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ToolsListComponent } from './tools/tools-list/tools-list.component';
+import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,8 @@ const routes: Routes = [
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
   { path: 'employees', component: EmployeeListComponent, data: { breadcrumb: 'Employees' }},
+  { path: 'employees/:id', component: EmployeeEditComponent},
+
   { path: 'tools', component: ToolsListComponent, data: { breadcrumb: 'Tools' }},
   { path: 'clients', component: ClientListComponent, data: { breadcrumb: 'Clients' }},
   { path: 'register', component: AddStudentComponent },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-add',
@@ -13,41 +14,47 @@ export class EmployeeAddComponent implements OnInit {
 
   constructor(public crudApi: EmployeeService,
     public fb: FormBuilder,
-    public toastr: ToastrService ) { }
+    public toastr: ToastrService,
+    private router: Router ) { }
 
   ngOnInit(): void {
-    this.crudApi.GetEmployeeList();  // Call GetStudentsList() before main form is being called
+    this.crudApi.GetEmployeeList();
     this.myForm();
   }
 
   myForm() {
     this.employeeForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(2)]],
-      lastName: [''],
-      email: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-      mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      emp_name: ['', [Validators.required, Validators.minLength(2)]],
+      lastname: ['', [Validators.required, Validators.minLength(2)]],
+      description: [''],
+      emailadd: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       position: ['']
     })
   }
 
-  get firstName() {
-    return this.employeeForm.get('firstName');
+  get emp_name() {
+    return this.employeeForm.get('emp_name');
   }
-
-  get lastName() {
-    return this.employeeForm.get('lastName');
-  }
-
-  get email() {
-    return this.employeeForm.get('email');
-  }
-
-  get mobileNumber() {
-    return this.employeeForm.get('mobileNumber');
+  get lastname() {
+    return this.employeeForm.get('lastname');
   }
 
   get position() {
     return this.employeeForm.get('position');
+  }
+
+  get mobile() {
+    return this.employeeForm.get('mobile');
+  }
+
+  get emailadd() {
+    return this.employeeForm.get('emailadd');
+  }
+
+
+  get description() {
+    return this.employeeForm.get('description');
   }
 
   ResetForm() {
@@ -55,9 +62,12 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   submitEmployeeData() {
-    this.crudApi.AddEmployee(this.employeeForm.value); // Submit student data using CRUD API
-    this.toastr.success(this.employeeForm.controls['firstName'].value + ' successfully added!'); // Show success message when data is successfully submited
-    this.ResetForm();  // Reset form when clicked on reset button
+    this.crudApi.AddEmployee(this.employeeForm.value).subscribe((data=>{
+      this.toastr.success(data.emp_name + ' successfully Aded!');
+      this.crudApi.GetEmployeeList();
+    }));
+
+    this.ResetForm();
    };
 
 
