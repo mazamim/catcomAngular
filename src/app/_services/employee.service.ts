@@ -44,19 +44,24 @@ export class EmployeeService {
   }
 
 
-  ReadDocuments(id:number)
-  {
+  postFile(caption: string, fileToUpload: File,id:number) {
 
-    return this.http.get<Photo[]>(this.baseUrl + 'employeepic/' + id);
-
-  }
-  postFile(caption: string, fileToUpload: File) {
-    const endpoint = 'http://127.0.0.1:8000/api/employeecloud/1';
     const formData: FormData = new FormData();
     formData.append('image', fileToUpload, fileToUpload.name);
     formData.append('ImageCaption', caption);
     return this.http
-      .post(endpoint, formData);
+      .post(this.baseUrl + 'employeecloud/' + id, formData);
   }
+
+
+  readFile(id: number)
+  {
+
+    return this.http.get<Photo[]>(this.baseUrl + 'employeecloud/' + id);
+
+  }
+
+
+
 
 }

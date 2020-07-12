@@ -31,7 +31,6 @@ export class EmployeeListComponent implements OnInit {
   getEmployees() {
     this.crudApi.GetEmployeeList().subscribe(response => {
       this.employees = response;
-      console.log(this.employees);
     }, error => {
       console.log(error);
     });

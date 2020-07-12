@@ -1,20 +1,3 @@
-<div class="row">
-  <div class="col-sm-2" *ngFor="let photo of photos">
-    <img src="" class="img-thumbnail p-1" alt="">
-    <div class="text-center">
-      <button type="button" class="btn btn-sm mr-1"
-
-        [ngClass]="photo.isMain ? 'btn-success active' : 'btn-secondary'"
-        [disabled]="photo.isMain" >Main</button>
-      <button type="button" class="btn btn-sm btn-danger"
-
-        [disabled]="photo.isMain"><i class="fa fa-trash-o"></i>
-    </button>
-    </div>
-  </div>
-</div>
-
-
 
   <div class="col-md-3">
 
@@ -38,45 +21,44 @@
       </div>
 
 
+</div>
 
 
+<div class="container mt-4">
 
-
-  <div class="col-md-9" style="margin-bottom: 40px"  *ngIf="uploader?.queue?.length">
-
-      <h3>Upload queue</h3>
-      <p>Queue length: {{ uploader?.queue?.length }}</p>
-
-      <table class="table">
-          <thead>
-          <tr>
-              <th width="50%">Name</th>
-              <th>Size</th>
-
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let item of uploader.queue">
-              <td><strong>{{ item?.file?.name }}</strong></td>
-              <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-
-          </tr>
-          </tbody>
-      </table>
-
-      <div>
-
-
-
-
-
+  <div class="d-flex">
+    <ng-container *ngFor="let item of slidesStore">
+    <div class="p-2">
+      <div class="card mb-4">
+        <div class="card-img-wrapper">
+          <img class="card-img-top" src="{{item.url}}" alt="">
+          <ul class="list-inline member-icons animate text-center">
+            <li class="list-inline-item"><button class="btn btn-primary"
+              ><i class="fa fa-user"></i></button></li>
+            <li class="list-inline-item"><button class="btn btn-primary"><i class="fa fa-heart"></i></button></li>
+            <li class="list-inline-item"><button class="btn btn-primary"><i class="fa fa-envelope"></i></button></li>
+          </ul>
+        </div>
+        <div class="card-body p-1">
+          <h6 class="card-title text-center mb-1"><i class="fa fa-user"></i>
+             {{item.description}}
+          </h6>
+          <p class="card-text text-muted text-center">{{item.emp_id}}</p>
+        </div>
       </div>
 
+    </div>
+  </ng-container>
   </div>
 
 
 
-  <div class="container">
+
+
+
+
+
+
 
   </div>
 
@@ -85,4 +67,4 @@
 
 
 
-</div>
+

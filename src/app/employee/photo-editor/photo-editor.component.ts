@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Photo } from 'src/app/_model/photo';
-import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { EmployeeService } from 'src/app/_services/employee.service';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-photo-editor',
@@ -10,58 +10,41 @@ import { EmployeeService } from 'src/app/_services/employee.service';
   styleUrls: ['./photo-editor.component.scss']
 })
 export class PhotoEditorComponent implements OnInit {
-  imageUrl: string = "../../assets/image/user.png";
+
+  slidesStore:Photo[];
+
+  imageUrl: string = "../../assets/images/default-image.png";
   fileToUpload: File = null;
+  @Input() editID: number;
 
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
 
+    nav: false
+  }
 
-  @Input() photos: Photo[];
-
-  uploader: FileUploader;
-  hasBaseDropZoneOver = false;
-  baseUrl = environment.apiUrl;
-  currentMain: Photo;
 
   constructor(private imageService:EmployeeService ) { }
 
   ngOnInit(): void {
-    this.initializeUploader();
+
+    this.imageService.readFile(this.editID).subscribe(data=>
+      {
+
+          this.slidesStore = data;
+
+      });
+
+
   }
 
-  fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
 
-  initializeUploader() {
-    this.uploader = new FileUploader({
-      url:'http://127.0.0.1:8000/api/employeecloud/1',
-
-
-      isHTML5: true,
-      allowedFileType: ['image'],
-      removeAfterUpload: true,
-      autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024
-    });
-
-this.uploader.onAfterAddingFile = (file) => {file.withCredentials=false;};
-
-    this.uploader.onSuccessItem = (item, response, status, headers) => {
-      if (response) {
-        const res: Photo = JSON.parse(response);
-        const photo = {
-          id: res.id,
-          emp_id:res.emp_id,
-          url: res.url,
-          description: res.description,
-          isMain: res.isMain
-        };
-        this.photos.push(photo);
-
-  }
-    };
-
-}
 
 handleFileInput(file: FileList) {
   this.fileToUpload = file.item(0);
@@ -75,12 +58,12 @@ handleFileInput(file: FileList) {
 }
 
 OnSubmit(Caption,Image){
- this.imageService.postFile(Caption.value,this.fileToUpload).subscribe(
+ this.imageService.postFile(Caption.value,this.fileToUpload,this.editID).subscribe(
    data =>{
-     console.log('done');
+
      Caption.value = null;
      Image.value = null;
-     this.imageUrl = "/assets/img/default-image.png";
+     this.imageUrl = "/assets/images/default-image.png";
    }
  );
 }

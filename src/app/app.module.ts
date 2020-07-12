@@ -44,7 +44,7 @@ import { ToolsAddComponent } from './tools/tools-add/tools-add.component';
 import { ToolsListComponent } from './tools/tools-list/tools-list.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { PhotoEditorComponent } from './employee/photo-editor/photo-editor.component';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
@@ -92,7 +92,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     AccordionModule.forRoot(),
     FileUploadModule,
     HttpClientModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    CarouselModule
 
 
 

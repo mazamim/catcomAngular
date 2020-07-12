@@ -28,11 +28,7 @@ photo: Photo[];
     console.log(this.employee);
    });
 
-   this.crudApi.ReadDocuments(id).subscribe(data=>{
 
-
-
-   });
 
   }
 
