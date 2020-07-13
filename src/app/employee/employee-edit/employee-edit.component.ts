@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Photo } from 'src/app/_model/photo';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-edit',
@@ -13,16 +14,18 @@ import { Photo } from 'src/app/_model/photo';
 export class EmployeeEditComponent implements OnInit {
 employee:IEmployee;
 photo: Photo[];
-
+id:number;
+@ViewChild('editForm',{static:true}) editForm: NgForm;
 
   constructor( public crudApi: EmployeeService,
     public toastr: ToastrService,private route: ActivatedRoute
+
     ) { }
 
   ngOnInit(): void
   {
-   const id = (+this.route.snapshot.paramMap.get('id'));
-   this.crudApi.GetEmployee(id).subscribe(data=>{
+  this.id = (+this.route.snapshot.paramMap.get('id'));
+   this.crudApi.GetEmployee(this.id).subscribe(data=>{
 
     this.employee=data;
     console.log(this.employee);
@@ -32,7 +35,17 @@ photo: Photo[];
 
   }
 
-  updateEmployee(){}
+  updateEmployee()
+  {
+    this.crudApi.UpdateEmployee(this.id, this.employee).subscribe(next => {
+
+      this.toastr.success('successfully updated!');
+      this.editForm.reset(this.employee);
+    }, error => {
+      console.log('error');
+    });
+
+  }
 
 
 

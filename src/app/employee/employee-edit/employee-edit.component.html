@@ -26,6 +26,9 @@
                 <div class="col-sm-4">
                   <div class="card">
                     <img class="card-img-top img-thumbnail" src="{{'../../../assets/images/user.png'}}" alt="">
+                    <div class="middle">
+                      <div class="text">Change Pic</div>
+                    </div>
                     <div class="card-body">
                       <div>
                         <strong>Name:</strong>
@@ -41,8 +44,8 @@
 
                       </div>
                       <div>
-                        <strong>Member since:</strong>
-                        <p>Some text</p>
+                        <strong>Contact</strong>
+                        <p>{{employee.mobile}}</p>
                       </div>
                     </div>
                     <div class="card-footer">
@@ -55,27 +58,49 @@
                     <tabset class="member-tabset">
                       <tab heading="Edit Profile">
                         <form #editForm="ngForm" id="editForm" (ngSubmit)="updateEmployee()">
-                          <h4>Description</h4>
+                          <h4>Skills</h4>
                           <textarea name="introduction" rows="6" class="form-control"
-                            [(ngModel)]="employee.emp_name"></textarea>
-                          <h4>Looking For</h4>
-                          <textarea name="lookingFor" rows="6" class="form-control"
-                            [(ngModel)]="employee.emp_name"></textarea>
-                          <h4>Interests</h4>
-                          <textarea name="interests" rows="6" class="form-control"
-                            [(ngModel)]="employee.emp_name"></textarea>
-                          <h4>Location Details:</h4>
+                          [(ngModel)]="employee.skills"></textarea>
+
+                          <h4>Address</h4>
+                            <input type="text"  name="address" class="form-control" [(ngModel)]="employee.address">
+
+
+
+
+                          <h4>Describtions</h4>
+                          <textarea name="description" rows="6" class="form-control"
+                            [(ngModel)]="employee.description"></textarea>
+
+
+                          <h4>Salary Details:</h4>
                           <div class="form-inline">
-                              <label for="city">City</label>
-                              <input class="form-control" type="text" name="city" [(ngModel)]="employee.emp_name">
-                              <label for="country">Country</label>
-                              <input class="form-control" type="text" name="country" [(ngModel)]="employee.emp_name">
+                            <label for="salarytype" class="mb-2 mr-sm-2">Salary Type</label>
+                            <select class="form-control mb-2 mr-sm-2" id="salarytype" name="salarytype" [(ngModel)]="employee.salarytype">
+                              <option>PerHour</option>
+                              <option>Package</option>
+                            </select>
+
+                            <label for="Amount" class="mb-2 mr-sm-2">Amount</label>
+                             <input type="text" class="form-control mb-2 mr-sm-2" id="Amount" name="Amount" [(ngModel)]="employee.salary">
+
+
+                             <label for="paymentmode" class="mb-2 mr-sm-2">Payment Mode</label>
+                             <select class="form-control mb-2 mr-sm-2" id="paymentmode" name="paymentmode" [(ngModel)]="employee.payment_mode">
+                              <option>ABN</option>
+                              <option>TFN</option>
+                            </select>
+
                           </div>
+
+                          <h4>Bank Details:</h4>
+                          <textarea name="bankdetails" rows="6" class="form-control"
+                          [(ngModel)]="employee.bankdetails"></textarea>
 
                         </form>
 
                       </tab>
-                      <tab heading="Edit Photos">
+                      <tab heading="Edit Documents">
                         <app-photo-editor [editID]="employee.id"
                         ></app-photo-editor>
                       </tab>

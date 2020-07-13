@@ -34,13 +34,19 @@ export class EmployeeService {
     }
 
 
-  UpdateEmployee(employee: IEmployee) {
-
+  UpdateEmployee(id: number,employee: IEmployee) {
+    return this.http.put<IEmployee>(this.baseUrl + 'employee/' + id, employee);
   }
 
   // Delete Student Object
   DeleteEmployee(id: number) {
+
     return this.http.delete<IEmployee>(this.baseUrl + 'employee/'+id);
+  }
+
+  DeleteDocuments(id:number){
+    return this.http.delete<Photo>(this.baseUrl + 'employeedoc/'+id);
+
   }
 
 

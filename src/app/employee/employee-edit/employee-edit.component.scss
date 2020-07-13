@@ -13,3 +13,21 @@
   background-color: #fff;
   border-top: none;
 }
+.card:hover img
+{
+  opacity: 0.3;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.card:hover .middle {
+  opacity: 1;
+}

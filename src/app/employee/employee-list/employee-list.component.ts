@@ -40,8 +40,10 @@ export class EmployeeListComponent implements OnInit {
 
 
   deleteEmployee(id) {
-    if (window.confirm('Are sure you want to delete this emploee ?')) {
-        this.crudApi.DeleteEmployee(id).subscribe(response =>{
+    if (window.confirm('This prcoess will delete documents too are you sure want to continue ?')) {
+
+      this.crudApi.DeleteDocuments(id).subscribe();
+      this.crudApi.DeleteEmployee(id).subscribe(response =>{
 
           this.toastr.success('successfully deleted!');
 
