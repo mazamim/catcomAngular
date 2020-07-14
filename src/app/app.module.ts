@@ -46,6 +46,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { PhotoEditorComponent } from './employee/photo-editor/photo-editor.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { AttendanceComponent } from './employee/attendance/attendance.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     ProjectsAddComponent,
     ToolsAddComponent,
     ToolsListComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
+    AttendanceComponent
   ],
   imports: [
     BrowserModule,
