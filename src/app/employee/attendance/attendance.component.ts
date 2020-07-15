@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-attendance',
@@ -8,16 +9,19 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class AttendanceComponent implements OnInit {
   myForm: FormGroup;
-  bsInlineValue = new Date();
-  constructor(private formBuilder: FormBuilder) {}
+  bsValue = new Date();
+
+
+  constructor() {
+
+
+  }
 
   ngOnInit(): void {
 
-    this.myForm = this.formBuilder.group({
-      date: null,
-      range: null
-    });
-
   }
+
+
+
 
 }

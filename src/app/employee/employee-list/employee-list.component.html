@@ -41,7 +41,10 @@
           <div class="col-xl-6 mt-5">
 
               <app-employee-add></app-employee-add>
+            <ng-container *ngIf="crudApi.emp$|async">
               <app-attendance></app-attendance>
+
+            </ng-container>
 
           </div>
         </div>

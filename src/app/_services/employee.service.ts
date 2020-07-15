@@ -3,6 +3,7 @@ import { IEmployee } from '../_model/employee';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../_model/photo';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -14,6 +15,8 @@ export class EmployeeService {
 
   baseUrl = environment.apiUrl;
 
+  private empSource = new BehaviorSubject<boolean>(false);
+ public emp$ = this.empSource.asObservable();
 
   constructor(private http: HttpClient) { }
 

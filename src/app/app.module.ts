@@ -47,7 +47,7 @@ import { PhotoEditorComponent } from './employee/photo-editor/photo-editor.compo
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AttendanceComponent } from './employee/attendance/attendance.component';
-
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +95,8 @@ import { AttendanceComponent } from './employee/attendance/attendance.component'
     FileUploadModule,
     HttpClientModule,
     TabsModule.forRoot(),
-    CarouselModule
+    CarouselModule,
+    TimepickerModule.forRoot()
 
 
 
