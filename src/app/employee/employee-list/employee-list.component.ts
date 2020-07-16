@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -12,6 +12,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./employee-list.component.scss']
 })
 export class EmployeeListComponent implements OnInit {
+
+  showThisContent$;
+  editEmployee:IEmployee;
 
 
   employees: IEmployee[];
@@ -25,6 +28,7 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployees();
+    this.showThisContent$ =  new BehaviorSubject(false);
 
 
   }
@@ -36,10 +40,17 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  showContent(employee:IEmployee){
+
+    this.showThisContent$.next(true);
+this.editEmployee=employee;
+
+  }
 
 
 
-  deleteEmployee(id) {
+
+  deleteEmployee(id:number) {
     if (window.confirm('This prcoess will delete documents too are you sure want to continue ?')) {
 
       this.crudApi.DeleteDocuments(id).subscribe();

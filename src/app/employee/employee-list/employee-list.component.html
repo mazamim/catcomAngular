@@ -28,6 +28,7 @@
 
                     <button type="button" class="btn btn-danger btn-sm ml-1"  (click)="deleteEmployee(item.id)">Delete</button>
                     <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/employees/'+ item.id]">Edit</button>
+                    <button type="button" class="btn btn-secondary btn-sm mr-auto p-2 mt-2" (click)=showContent(item)>Attendance</button>
                   </div>
 
               </div>
@@ -41,8 +42,8 @@
           <div class="col-xl-6 mt-5">
 
               <app-employee-add></app-employee-add>
-            <ng-container *ngIf="crudApi.emp$|async">
-              <app-attendance></app-attendance>
+            <ng-container *ngIf="showThisContent$ | async">
+              <app-attendance [employee]="editEmployee"></app-attendance>
 
             </ng-container>
 
