@@ -14,6 +14,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class EmployeeListComponent implements OnInit {
 
   showThisContent$;
+
   editEmployee:IEmployee;
 
 
@@ -43,7 +44,16 @@ export class EmployeeListComponent implements OnInit {
   showContent(employee:IEmployee){
 
     this.showThisContent$.next(true);
-this.editEmployee=employee;
+    this.editEmployee=employee;
+    this.crudApi.checkAttendanceStatus(this.editEmployee.id).subscribe(data=>
+      {
+        this.crudApi.showPuchOutContent$.next(true);
+
+      },(error)=>
+      {
+        this.toastr.warning("No Punch in AVailable");
+
+      })
 
   }
 

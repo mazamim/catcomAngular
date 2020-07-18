@@ -48,6 +48,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AttendanceComponent } from './employee/attendance/attendance.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { MomentModule } from 'ngx-moment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     FooterComponent,
     HomeComponent,
     SectionHeaderComponent,
+
 
 
     ExpensesComponent,
@@ -96,7 +98,8 @@ import { TimepickerModule } from 'ngx-bootstrap/timepicker';
     HttpClientModule,
     TabsModule.forRoot(),
     CarouselModule,
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    MomentModule
 
 
 

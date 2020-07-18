@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../_model/photo';
 import { BehaviorSubject } from 'rxjs';
+import { IAttendance } from '../_model/attendance';
 
 
 
@@ -12,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class EmployeeService {
 
-
+public showPuchOutContent$=new BehaviorSubject(false);
   baseUrl = environment.apiUrl;
 
   private empSource = new BehaviorSubject<boolean>(false);
@@ -25,6 +26,25 @@ export class EmployeeService {
 
     return this.http.post<IEmployee>(this.baseUrl + 'employee', employee );
 }
+  employeePunchIn(attendance:IAttendance)
+    {
+
+        return this.http.post<IAttendance>(this.baseUrl + 'attendance', attendance);
+
+    }
+    employeePunchOut(attendance:IAttendance)
+    {
+      return this.http.put<IAttendance>(this.baseUrl + 'attendance', attendance);
+
+    }
+
+    checkAttendanceStatus(id:number)
+    {
+      return this.http.get(this.baseUrl + 'attendance/'+id);
+
+    }
+
+
 
      // Fetch Single employee Object
      GetEmployee(id: number) {

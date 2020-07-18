@@ -2,84 +2,115 @@
   <div class="tab-panel mt-5">
     <tabset class="member-tabset">
       <tab heading="Punch IN">
+        <form [formGroup]="myForm">
+          <br>
+          <h5>{{employee.lastname}}</h5>
 
+          <div class="row justify-content-left align-items-center">
+            <br><br>
+            <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+              <input type="text"
+              class="form-control mb-3"
+              placeholder="Datepicker"
+              [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD' }"
+              bsDatepicker
+              formControlName="punchIn"
 
-
-        <div class="card rounded">
-          <div class="card-body">
-            <h5 class="text-muted text-center mb-4">{{employee.emp_name}} PUCH IN SHEET</h5>
-            <i class="fas fa-sync mr-3"></i>
-
-            <div class="row">
-              <div class="col-6">
-
-                <div class="row">
-            <div class="col-xs-12 col-12 col-md-12 form-group">
-                  <input type="text"
-                  class="form-control"
-                  [(ngModel)]="bsValue"
-                   #dp="bsDatepicker"
-                  bsDatepicker
-                 [bsValue]="bsValue">
-              </div>
-  <div class="col-xs-12 col-12 col-md-12 form-group">
-    <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen" type="button">Date Picker</button>
-  </div>
-</div>
-
-
-              </div>
-              <div class="col-6">
-                <timepicker [(ngModel)]="bsValue"></timepicker>
-
-
-              </div>
+              />
+              <pre *ngIf="myForm.value.date" class="code-preview">{{myForm.value.date | date}}</pre>
             </div>
 
-            <pre class="alert alert-info">Time is: {{bsValue}}</pre>
+
+
+            <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+              <timepicker [formControlName]="'punchtime'"></timepicker>
+            </div>
+
+
+
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <input type="hidden" formControlName="emp_id" [(ngModel)]="employee.id">
+
           </div>
         </div>
 
 
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <button type="submit" class="punchInButton" [disabled]="!myForm.valid" (click)="onSubmit()">Punch In</button>
+
+          </div>
+        </div>
+
+
+        <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+          <input type="hidden" class="form-control mb-3" placeholder="Datepicker" [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD h:mm:ss' }" bsDatepicker formControlName="punchOut" />
+          <pre *ngIf="myForm.value.date" class="code-preview">{{myForm.value.date | date}}</pre>
+        </div>
+    </div>
+        </form>
 
       </tab>
 
       <tab heading="Punch OUT">
 
-        <div class="card rounded">
-          <div class="card-body">
-            <h5 class="text-muted text-center mb-4">PUCH OUT SHEET</h5>
 
 
-            <div class="row">
-              <div class="col-6">
-
-                <div class="row">
-            <div class="col-xs-12 col-12 col-md-12 form-group">
-                  <input type="text"
-                  class="form-control"
-                  [(ngModel)]="bsValue"
-                   #dp="bsDatepicker"
-                  bsDatepicker
-                 [bsValue]="bsValue">
-              </div>
-  <div class="col-xs-12 col-12 col-md-12 form-group">
-    <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen" type="button">Date Picker</button>
-  </div>
-</div>
 
 
-              </div>
-              <div class="col-6">
-                <timepicker [(ngModel)]="bsValue"></timepicker>
 
 
-              </div>
+        <form [formGroup]="myForm2">
+          <br>
+          <h5>{{employee.lastname}} Puch Out Sheet</h5>
+
+          <div class="row justify-content-left align-items-center" *ngIf="api.showPuchOutContent$">
+            <br><br>
+            <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+              <input type="text"
+              class="form-control mb-3"
+              placeholder="Datepicker"
+              [bsConfig]="{ dateInputFormat: 'YYYY/MM/DD' }"
+              bsDatepicker
+              formControlName="punchOut"
+
+              />
+              <pre *ngIf="myForm2.value.date" class="code-preview">{{myForm2.value.date | date}}</pre>
             </div>
 
-            <pre class="alert alert-info">Time is: {{bsValue}}</pre>
+
+
+            <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group">
+              <timepicker [formControlName]="'punchtime'"></timepicker>
+            </div>
+
+
+
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <input type="hidden" formControlName="emp_id" [(ngModel)]="employee.id">
+
           </div>
         </div>
+
+
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <button type="submit" class="punchOutButton" [disabled]="!myForm2.valid" (click)="onSubmitPunchOut()">Punch Out</button>
+
+          </div>
+        </div>
+
+
+    </div>
+        </form>
+
+
+
+
+
+
 
 
       </tab>
