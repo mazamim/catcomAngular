@@ -91,6 +91,12 @@ public showPuchOutContent$=new BehaviorSubject(false);
   }
 
 
+  getAttendanceslist()
+  {
+    return this.http.get(this.baseUrl + 'attendancelist');
+
+  }
+
 
 
 }

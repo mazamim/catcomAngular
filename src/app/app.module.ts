@@ -49,6 +49,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AttendanceComponent } from './employee/attendance/attendance.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { MomentModule } from 'ngx-moment';
+import { AttendanceReportComponent } from './reports/attendance-report/attendance-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,7 +81,8 @@ import { MomentModule } from 'ngx-moment';
     ToolsAddComponent,
     ToolsListComponent,
     PhotoEditorComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    AttendanceReportComponent
   ],
   imports: [
     BrowserModule,

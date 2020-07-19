@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { IAttendance } from 'src/app/_model/attendance';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,8 +17,7 @@ export class EmployeeListComponent implements OnInit {
   showThisContent$;
 
   editEmployee:IEmployee;
-
-
+  atd:any;
   employees: IEmployee[];
 
 
@@ -41,17 +41,22 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+
+
   showContent(employee:IEmployee){
 
     this.showThisContent$.next(true);
     this.editEmployee=employee;
+
     this.crudApi.checkAttendanceStatus(this.editEmployee.id).subscribe(data=>
       {
         this.crudApi.showPuchOutContent$.next(true);
 
-      },(error)=>
+        this.atd=data;
+     },(error)=>
       {
         this.toastr.warning("No Punch in AVailable");
+
 
       })
 

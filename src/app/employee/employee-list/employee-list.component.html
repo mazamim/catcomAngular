@@ -28,9 +28,13 @@
 
                     <button type="button" class="btn btn-danger btn-sm ml-1"  (click)="deleteEmployee(item.id)">Delete</button>
                     <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/employees/'+ item.id]">Edit</button>
-                    <button type="button" class="btn btn-secondary btn-sm mr-auto p-2 mt-2" (click)=showContent(item)>Attendance</button>
-                  </div>
+                    <button type="button"
+                    class="btn btn-secondary btn-sm mr-auto p-2 mt-2"
 
+                    (click)=showContent(item)>Attendance</button>
+
+                  </div>
+                  <pre class="alert alert-info mt-2">{{item.lastname}} is Punch In at: {{atd?.punchIn}}</pre>
               </div>
 
               </accordion-group>
