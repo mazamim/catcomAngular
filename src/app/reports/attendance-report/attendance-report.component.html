@@ -53,8 +53,27 @@
                   <th scope="row">{{i+1}}</th>
                   <td>{{item.emp_name}}</td>
                   <td>{{item.punchIn}}</td>
-                  <td>{{item.punchOut}}</td>
-                  <td>9 Hours</td>
+                  <td>
+                    <p *ngIf="itemshow(item.emp_id); else notShow">
+                      on-Site
+                   </p>
+                   <ng-template #notShow>
+                    <p>
+                      {{item.punchOut}}
+                    </p>
+                  </ng-template>
+                  </td>
+                   
+                  <td>
+                    <p *ngIf="itemshow(item.emp_id); else notShow">
+                      on-Site
+                   </p>
+                   <ng-template #notShow>
+                    <p>
+                     
+                    </p>
+                  </ng-template>
+                  </td>
                 </tr>
 
               </tbody>

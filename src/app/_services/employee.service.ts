@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../_model/photo';
 import { BehaviorSubject } from 'rxjs';
-import { IAttendance } from '../_model/attendance';
+import { IAttendance, IAllPunchinList } from '../_model/attendance';
 
 
 
@@ -42,6 +42,11 @@ public showPuchOutContent$=new BehaviorSubject(false);
     {
       return this.http.get(this.baseUrl + 'attendance/'+id);
 
+    }
+    checkallAttendance()
+    {
+
+      return this.http.get<IAllPunchinList[]>(this.baseUrl + 'attendanceall');
     }
 
 
