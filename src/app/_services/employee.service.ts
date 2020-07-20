@@ -102,6 +102,12 @@ public showPuchOutContent$=new BehaviorSubject(false);
 
   }
 
+  getAttendanceslistbydate(obj:any)
+  {
+
+    return this.http.post(this.baseUrl + 'attendancelistbydate',obj);
+  }
+
 
 
 }
