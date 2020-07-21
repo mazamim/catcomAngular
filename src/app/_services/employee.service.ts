@@ -43,11 +43,7 @@ public showPuchOutContent$=new BehaviorSubject(false);
       return this.http.get(this.baseUrl + 'attendance/'+id);
 
     }
-    checkallAttendance()
-    {
 
-      return this.http.get<IAllPunchinList[]>(this.baseUrl + 'attendanceall');
-    }
 
 
 
@@ -96,11 +92,7 @@ public showPuchOutContent$=new BehaviorSubject(false);
   }
 
 
-  getAttendanceslist()
-  {
-    return this.http.get(this.baseUrl + 'attendancelist');
 
-  }
 
   getAttendanceslistbydate(obj:any)
   {

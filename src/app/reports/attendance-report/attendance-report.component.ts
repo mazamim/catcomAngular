@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { IAllPunchinList } from 'src/app/_model/attendance';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-attendance-report',
@@ -12,57 +13,61 @@ import { IAllPunchinList } from 'src/app/_model/attendance';
 export class AttendanceReportComponent implements OnInit {
   show: boolean = false;
   atdlist:any;
-  alllist:IAllPunchinList[];
-  daterangepickerModel: Date[];
-  
-  obj:any ={
+  employees:IEmployee[];
+  obj:any={
 
-    "emp_id":"1",
-    "startIn": "2020-07-20 06:39:51",
-    "endIn": "2020-07-21 07:40:14"
+      "emp_id":"all",
+      "startIn": "2020-07-20 06:39:51",
+      "endIn": "2020-07-21 07:40:14"
+
   };
 
-  objAll:any = {
-    "all":"true"
-};
+
 
   constructor(private api:EmployeeService) { }
 
   ngOnInit(): void {
+    this.api.getAttendanceslistbydate(this.obj).subscribe(data=>{
 
-    this.api.getAttendanceslist().subscribe(data=>{
+      this.atdlist=data;
 
-        this.atdlist=data;
+     });
+     this.api.GetEmployeeList().subscribe(data=>{
+
+      this.employees=data;
+     })
+
+  }
+
+
+
+  onSumbit(){
+const punchInfrom = moment(this.myForm.controls['startIn'].value).format('YYYY/MM/DD HH:mm:ss');
+const punchInTo = moment(this.myForm.controls['endIn'].value).format('YYYY/MM/DD HH:mm:ss');
+
+    this.myForm.patchValue({
+      startIn:punchInfrom ,
+      endIn:punchInTo
+
+
     })
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.myForm.value, null, 4));
 
-    this.api.checkallAttendance().subscribe(data=>{
-       this.alllist= data;
+this.api.getAttendanceslistbydate(this.myForm.value).subscribe(data=>{
 
-    })
-this.getattendancelistbydate();
+ this.atdlist=data;
 
-  }
-
-  getattendancelistbydate()
-  {
-
-    this.api.getAttendanceslistbydate(this.objAll).subscribe(data=>{
-
-    console.log(data);
-
-    });
-  }
-
-  public itemshow(id:number): boolean
-
-  {
-    for(var i = 0; i < this.alllist.length; i++){
-
-     if (this.alllist[i].emp_id==id) return true ;
+});
 
   }
 
-  }
-  onSumbit(){}
+  myForm = new FormGroup({
+    emp_id:new FormControl,
+    startIn: new FormControl(new Date()),
+    endIn: new FormControl(new Date())
+
+
+
+  });
 
 }
