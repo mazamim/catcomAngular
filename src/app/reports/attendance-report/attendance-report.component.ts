@@ -14,6 +14,7 @@ export class AttendanceReportComponent implements OnInit {
   atdlist:any;
   alllist:IAllPunchinList[];
   daterangepickerModel: Date[];
+  
   obj:any ={
 
     "emp_id":"1",
@@ -21,9 +22,14 @@ export class AttendanceReportComponent implements OnInit {
     "endIn": "2020-07-21 07:40:14"
   };
 
+  objAll:any = {
+    "all":"true"
+};
+
   constructor(private api:EmployeeService) { }
 
   ngOnInit(): void {
+
     this.api.getAttendanceslist().subscribe(data=>{
 
         this.atdlist=data;
@@ -40,9 +46,9 @@ this.getattendancelistbydate();
   getattendancelistbydate()
   {
 
-    this.api.getAttendanceslistbydate(this.obj).subscribe(data=>{
+    this.api.getAttendanceslistbydate(this.objAll).subscribe(data=>{
 
-console.log(data);
+    console.log(data);
 
     });
   }
