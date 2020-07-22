@@ -1,1 +1,57 @@
-<p>projects-list works!</p>
+<section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5">
+  
+            <div class="col-xl-6">
+              <h4 class="text-muted mb-4">Tasks</h4>
+  
+              <accordion [isAnimated]="true" *ngFor="let item of projects">
+                <accordion-group heading = "{{item.describtion}}">
+  
+                  <div class="p-2">
+  
+                  
+                    <div class="ml-3 d-inline-block align-middle">
+                        <h5 class="mb-0">
+                            <a routerLink=""
+                                class="text-dark"><p>Some text will be here</p></a>
+                        </h5>
+                             <span
+                            class="text-muted font-weight-normal font-italic d-block">Status:{{item.status}}
+                           </span>
+                           <span
+                           class="text-muted font-weight-normal font-italic d-block">created_at:{{item.created_at}}
+                          </span>
+                    </div>
+  
+                    <div class="d-flex flex-row-reverse">
+  
+                      <button type="button" class="btn btn-danger btn-sm ml-1" (click)="DeleteProject(item.id)" >Delete</button>
+                      <button type="button" class="btn btn-warning btn-sm" >Edit</button>
+                      <button type="button" class="btn btn-success btn-sm mr-auto p-2 mt-2">Completed</button>
+  
+                    </div>
+                    
+                </div>
+  
+                </accordion-group>
+  
+              </accordion>
+  
+            </div>
+  
+            <div class="col-xl-6 mt-5">
+  
+  
+                <app-projects-add></app-projects-add>>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  

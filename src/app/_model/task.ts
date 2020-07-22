@@ -1,8 +1,9 @@
 export interface DoTask {
-  $key: string;
-  taskname: string;
-  category:string;
+  id:number;
   describtion: string;
-  status: string
+  remarks:string;
+  status: string;
+  created_at?: string;
+  updated_at?: string;
 
 }

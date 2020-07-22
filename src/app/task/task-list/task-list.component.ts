@@ -10,11 +10,36 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TaskListComponent implements OnInit {
 
+  tasks: DoTask[];
+
   constructor(    public crudApi: TaskService, // Inject student CRUD services in constructor.
     public toastr: ToastrService) { }
 
   ngOnInit(): void {
+    this.getTasks();
 
+  }
+
+  getTasks() {
+    this.crudApi.GetTaskList().subscribe(response => {
+      this.tasks = response;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  deleteTask(id:number) {
+    if (window.confirm('Are you sure want to delete task?')) {
+
+    
+      this.crudApi.DeleteTask(id).subscribe(response =>{
+
+          this.toastr.success('successfully deleted!');
+
+
+        });
+       // Alert message will show up when student successfully deleted.
+    }
   }
 
 

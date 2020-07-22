@@ -7,22 +7,38 @@
           <div class="col-xl-6">
             <h4 class="text-muted mb-4">Tasks</h4>
 
-            <div class="container-fluid bg-white">
-              <div class="row py-3 mb-4 task-border align-items-center">
-                <div class="col-1">
-                  <input type="checkbox" checked>
-                </div>
-                <div class="col-sm-9 col-8">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </div>
-                <div class="col-1">
-                  <a href="#" data-toggle="tooltip" title="<h6>edit</h6>" data-html="true" data-placement="top"><i class="fas fa-edit fa-lg text-success mr-2"></i></a>
-                </div>
-                <div class="col-1">
-                  <a href="#" data-toggle="tooltip" title="<h6>delete</h6>" data-html="true" data-placement="top"><i class="fas fa-trash-alt fa-lg text-danger"></i></a>
-                </div>
+            <accordion [isAnimated]="true" *ngFor="let item of tasks">
+              <accordion-group heading = "{{item.describtion}}">
+
+                <div class="p-2">
+
+                
+                  <div class="ml-3 d-inline-block align-middle">
+                      <h5 class="mb-0">
+                          <a routerLink=""
+                              class="text-dark">{{item.remarks}}</a>
+                      </h5>
+                           <span
+                          class="text-muted font-weight-normal font-italic d-block">Status:{{item.status}}
+                         </span>
+                         <span
+                         class="text-muted font-weight-normal font-italic d-block">created_at:{{item.created_at}}
+                        </span>
+                  </div>
+
+                  <div class="d-flex flex-row-reverse">
+
+                    <button type="button" class="btn btn-danger btn-sm ml-1" (click)="deleteTask(item.id)" >Delete</button>
+                    <button type="button" class="btn btn-warning btn-sm" >Edit</button>
+                    <button type="button" class="btn btn-success btn-sm mr-auto p-2 mt-2">Completed</button>
+
+                  </div>
+                  
               </div>
-            </div>
+
+              </accordion-group>
+
+            </accordion>
 
           </div>
 
