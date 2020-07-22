@@ -1,1 +1,48 @@
-<p>client-add works!</p>
+<form [formGroup]="taskForm" (ngSubmit)="submitTaskData()" novalidate>
+  
+    <div class="row">
+      <div class="col-md-10 mb-3">
+        <input type="text" formControlName="describtion" class="form-control" placeholder="Task" required>
+  
+    </div>
+  
+    </div>
+  
+  
+      <div class="row">
+          <div class="col-md-6 mb-3">
+              <select class="form-control" name="status" formControlName="status">
+                  <option>Pending</option>
+                  <option>Completed</option>
+                  <option>Not_Completed</option>
+               </select>
+      
+      
+        </div>
+        </div>
+  
+  
+        <div class="row">
+          <div class="col-md-10 mb-3">
+            <textarea class="form-control" formControlName="remarks" id="exampleFormControlTextarea2" rows="3"></textarea>
+      
+        </div>
+      
+        </div>
+    
+      <div class="row">
+        <div class="col-md-3 mb-3">
+          <button type="submit" class="btn btn-success" [disabled]="!taskForm.valid">Add Tasks</button>
+    
+      </div>
+      <div class="col-md-2 mb-3">
+    
+        <button type="button" class="btn btn-secondary gap-right" (click)="ResetForm()">Reset</button>
+      </div>
+    
+    
+      </div>
+    
+    
+    
+    </form>
