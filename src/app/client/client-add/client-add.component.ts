@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/_services/client.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./client-add.component.scss']
 })
 export class ClientAddComponent implements OnInit {
-
+  public taskForm: FormGroup;
   constructor(public crudApi: ClientService,
     public fb: FormBuilder,
     public toastr: ToastrService,
@@ -24,8 +24,8 @@ export class ClientAddComponent implements OnInit {
       describtion: ['', [Validators.required, Validators.minLength(2)]],
       remarks: [''],
       status: ['']
-  
-      
+
+
     })
   }
 
@@ -36,9 +36,9 @@ export class ClientAddComponent implements OnInit {
   submitTaskData() {
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.taskForm.value, null, 4));
-    this.crudApi.AddTask(this.taskForm.value).subscribe((data=>{
+    this.crudApi.AddClient(this.taskForm.value).subscribe((data=>{
       this.toastr.success('successfully Added!');
-      this.crudApi.GetTaskList();
+      this.crudApi.GetClientList();
     }));
 
     this.ResetForm();
