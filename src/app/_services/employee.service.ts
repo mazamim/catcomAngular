@@ -79,8 +79,10 @@ public showPuchOutContent$=new BehaviorSubject(false);
     const formData: FormData = new FormData();
     formData.append('image', fileToUpload, fileToUpload.name);
     formData.append('ImageCaption', caption);
+
+
     return this.http
-      .post(this.baseUrl + 'employeecloud/' + id, formData);
+       .post(this.baseUrl + 'employeecloud/' + id, formData);
   }
 
 

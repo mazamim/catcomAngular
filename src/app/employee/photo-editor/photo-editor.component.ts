@@ -3,6 +3,8 @@ import { Photo } from 'src/app/_model/photo';
 import { environment } from 'src/environments/environment';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
+import { CustomerService } from 'src/app/_services/customer.service';
 
 @Component({
   selector: 'app-photo-editor',
@@ -30,7 +32,9 @@ export class PhotoEditorComponent implements OnInit {
   }
 
 
-  constructor(private imageService:EmployeeService ) { }
+  constructor(private imageService:EmployeeService ,
+    public customerservice: CustomerService,
+    public toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -61,6 +65,8 @@ OnSubmit(Caption,Image){
  this.imageService.postFile(Caption.value,this.fileToUpload,this.editID).subscribe(
    data =>{
 
+    this.toastr.success('successfully Added!');
+    this.customerservice.refresh();
      Caption.value = null;
      Image.value = null;
      this.imageUrl = "/assets/images/default-image.png";
