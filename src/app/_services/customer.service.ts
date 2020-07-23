@@ -10,17 +10,17 @@ export class CustomerService {
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  GetClientList() {
+  GetCustomerList() {
     return this.http.get<ICustomer[]>(this.baseUrl + 'customers');
   }
   
-  AddClient(data:ICustomer){
+  AddCustomer(data:ICustomer){
 
     return this.http.post<ICustomer>(this.baseUrl + 'customers', data );
 
   }
 
-  DeleteClient(id: number) {
+  DeleteCustomer(id: number) {
 
     return this.http.delete<ICustomer>(this.baseUrl + 'customer/'+id);
   }

@@ -50,6 +50,9 @@ import { AttendanceComponent } from './employee/attendance/attendance.component'
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { MomentModule } from 'ngx-moment';
 import { AttendanceReportComponent } from './reports/attendance-report/attendance-report.component';
+
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { CustomerAddComponent } from './customer/customer-add/customer-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,7 +85,10 @@ import { AttendanceReportComponent } from './reports/attendance-report/attendanc
     ToolsListComponent,
     PhotoEditorComponent,
     AttendanceComponent,
-    AttendanceReportComponent
+    AttendanceReportComponent,
+
+    CustomerListComponent,
+    CustomerAddComponent
   ],
   imports: [
     BrowserModule,

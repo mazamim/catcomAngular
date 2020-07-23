@@ -13,6 +13,7 @@ import { ToolsListComponent } from './tools/tools-list/tools-list.component';
 import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 import { AttendanceComponent } from './employee/attendance/attendance.component';
 import { AttendanceReportComponent } from './reports/attendance-report/attendance-report.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
   { path: 'employees', component: EmployeeListComponent, data: { breadcrumb: 'Employees' }},
+  { path: 'customers', component: CustomerListComponent, data: { breadcrumb: 'Employees' }},
   { path: 'attendancereport', component: AttendanceReportComponent, data: { breadcrumb: 'Reports' }},
   { path: 'employees/:id', component: EmployeeEditComponent},
 
