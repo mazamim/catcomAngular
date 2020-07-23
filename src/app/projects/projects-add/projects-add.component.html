@@ -1,35 +1,36 @@
 <form [formGroup]="taskForm" (ngSubmit)="submitTaskData()" novalidate>
-  
+
     <div class="row">
       <div class="col-md-10 mb-3">
         <input type="text" formControlName="address" class="form-control" placeholder="Site Address" required>
-  
+
     </div>
-  
+
     </div>
-  
-  
+
+
       <div class="row">
         <div class="col-md-5 mb-3">
           <select class="form-control" name="client_id" formControlName="client_id" placeholder="Client Name">
-            <option value="" selected disabled hidden>Choose Client</option> 
+            <option value="" selected disabled hidden>Choose Client</option>
             <option *ngFor="let itm of clients" [value]="itm.id">
               {{itm.client_name}}
             </option>
-             
+
            </select>
-  
-  
+
+
     </div>
-      
-       
+
+
     <div class="col-md-5 mb-3">
       <select class="form-control" name="cus_id" formControlName="cus_id">
         <option value="" selected disabled hidden>Choose Customer</option>
+        <option value="1" >General Customer</option>
         <option *ngFor="let itm of customers" [value]="itm.id">
           {{itm.cus_name}}
         </option>
-         
+
        </select>
 
 
@@ -46,32 +47,32 @@
             <option>PullThrough</option>
             <option>General</option>
 
-           
+
          </select>
-  
-  
+
+
       </div>
       </div>
 
     <div class="row">
       <div class="col-md-10 mb-3">
         <input type="text" formControlName="describtion" class="form-control" placeholder="Job Describtion" required>
-  
+
     </div>
-  
+
     </div>
-  
+
         <div class="row">
           <div class="col-md-10 mb-3">
             <textarea class="form-control" formControlName="remarks" id="exampleFormControlTextarea2" rows="3"></textarea>
-      
+
         </div>
-      
+
         </div>
 
         <div class="row">
       <div class="col-md-6 mb-3">
-        <select class="form-control" name="cus_id" formControlName="cus_id" >
+        <select class="form-control" name="status" formControlName="status" >
           <option value="" selected disabled hidden>Choose Ticket Status</option>
           <option>Assigned</option>
             <option>Pending</option>
@@ -79,30 +80,30 @@
             <option>Completed not Invoiced</option>
             <option>Completed and Invoice Updated</option>
 
-           
+
          </select>
-  
-  
+
+
       </div>
       </div>
 
 
 
-    
+
       <div class="row">
         <div class="col-md-3 mb-3">
           <button type="submit" class="btn btn-success" [disabled]="!taskForm.valid">Create Ticket</button>
-    
+
       </div>
       <div class="col-md-2 mb-3">
-    
+
         <button type="button" class="btn btn-secondary gap-right" (click)="ResetForm()">Reset</button>
       </div>
-    
-    
+
+
       </div>
-    
-    
-    
+
+
+
     </form>
 

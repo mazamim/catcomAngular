@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { IAttendance } from 'src/app/_model/attendance';
+import { CustomerService } from 'src/app/_services/customer.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -23,7 +24,8 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     public crudApi: EmployeeService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private cusservice:CustomerService
     ){ }
 
 
@@ -72,6 +74,7 @@ export class EmployeeListComponent implements OnInit {
       this.crudApi.DeleteEmployee(id).subscribe(response =>{
 
           this.toastr.success('successfully deleted!');
+          this.cusservice.refresh();
 
 
         });

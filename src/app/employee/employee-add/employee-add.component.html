@@ -2,9 +2,8 @@
   <div class="row">
     <div class="col-md-5 mb-3">
     <input type="text" formControlName="emp_name" class="form-control" placeholder="Employee Name" required>
-    <!-- Showing errors using getter method -->
-    <p *ngIf="emp_name.touched && emp_name.invalid" class="error"><sup>*</sup>Please enter atleast first name</p>
-    <p *ngIf="emp_name.errors?.minlength" class="error"><sup>*</sup>Name shouldn't be less than 2 words</p>
+
+
 
   </div>
   <div class="col-md-5 mb-3">
@@ -17,18 +16,14 @@
   <div class="row">
     <div class="col-md-5 mb-3">
       <input type="email" formControlName="emailadd" class="form-control"  placeholder="Email" required>
-      <!-- Showing errors using getter method -->
-      <p *ngIf="emailadd.touched && emailadd.invalid" class="error"><sup>*</sup>Please provide email</p>
-      <p *ngIf="emailadd.errors?.pattern" class="error"><sup>*</sup>Please enter correct email</p>
+
+
 
   </div>
   <div class="col-md-5 mb-3">
     <input type="text" formControlName="mobile" class="form-control" placeholder="Mobile"  required>
-    <!-- Showing errors using getter method -->
-    <p *ngIf="mobile.touched && mobile.invalid" class="error"><sup>*</sup>Please provide contact
-      number</p>
-    <p *ngIf="mobile.errors?.pattern" class="error"><sup>*</sup>Use numbers only
-      number</p>
+
+
   </div>
 
 

@@ -3,6 +3,7 @@ import { EmployeeService } from 'src/app/_services/employee.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomerService } from 'src/app/_services/customer.service';
 
 @Component({
   selector: 'app-employee-add',
@@ -15,7 +16,7 @@ export class EmployeeAddComponent implements OnInit {
   constructor(public crudApi: EmployeeService,
     public fb: FormBuilder,
     public toastr: ToastrService,
-    private router: Router ) { }
+    private router: Router,private cusservice:CustomerService ) { }
 
   ngOnInit(): void {
     this.crudApi.GetEmployeeList();
@@ -33,30 +34,6 @@ export class EmployeeAddComponent implements OnInit {
     })
   }
 
-  get emp_name() {
-    return this.employeeForm.get('emp_name');
-  }
-  get lastname() {
-    return this.employeeForm.get('lastname');
-  }
-
-  get position() {
-    return this.employeeForm.get('position');
-  }
-
-  get mobile() {
-    return this.employeeForm.get('mobile');
-  }
-
-  get emailadd() {
-    return this.employeeForm.get('emailadd');
-  }
-
-
-  get description() {
-    return this.employeeForm.get('description');
-  }
-
   ResetForm() {
     this.employeeForm.reset();
   }
@@ -65,9 +42,11 @@ export class EmployeeAddComponent implements OnInit {
     this.crudApi.AddEmployee(this.employeeForm.value).subscribe((data=>{
       this.toastr.success(data.emp_name + ' successfully Aded!');
       this.crudApi.GetEmployeeList();
+      this.cusservice.refresh();
     }));
 
-    this.ResetForm();
+
+
    };
 
 

@@ -50,6 +50,7 @@ import { AttendanceReportComponent } from './reports/attendance-report/attendanc
 
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerAddComponent } from './customer/customer-add/customer-add.component';
+import { RefreshComponent } from './refresh/refresh.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,7 +82,8 @@ import { CustomerAddComponent } from './customer/customer-add/customer-add.compo
     AttendanceReportComponent,
 
     CustomerListComponent,
-    CustomerAddComponent
+    CustomerAddComponent,
+    RefreshComponent
   ],
   imports: [
     BrowserModule,

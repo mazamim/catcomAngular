@@ -31,12 +31,12 @@ export class CustomerListComponent implements OnInit {
   deleteCustomer(id:number) {
     if (window.confirm('Are you sure want to delete task?')) {
 
-    
+
       this.crudApi.DeleteCustomer(id).subscribe(response =>{
 
           this.toastr.success('successfully deleted!');
 
-
+          this.crudApi.refresh();
         });
        // Alert message will show up when student successfully deleted.
     }

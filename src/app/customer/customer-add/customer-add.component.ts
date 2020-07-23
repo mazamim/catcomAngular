@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/_services/customer.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+
 
 @Component({
   selector: 'app-customer-add',
@@ -11,16 +12,25 @@ import { Router } from '@angular/router';
 })
 export class CustomerAddComponent implements OnInit {
   public taskForm: FormGroup;
+
+
   constructor(public crudApi: CustomerService,
     public fb: FormBuilder,
     public toastr: ToastrService,
-    private router: Router) { }
+    private router: Router){
+
+
+     }
 
   ngOnInit(): void {
     this.myForm();
   }
 
-  
+
+
+
+
+
   myForm() {
     this.taskForm = this.fb.group({
       cus_name: ['', [Validators.required, Validators.minLength(2)]],
@@ -41,7 +51,7 @@ export class CustomerAddComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.taskForm.value, null, 4));
     this.crudApi.AddCustomer(this.taskForm.value).subscribe((data=>{
       this.toastr.success('successfully Added!');
-      this.crudApi.GetCustomerList();
+      this.crudApi.refresh();
     }));
 
     this.ResetForm();
