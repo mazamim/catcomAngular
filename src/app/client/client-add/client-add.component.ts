@@ -3,6 +3,7 @@ import { ClientService } from 'src/app/_services/client.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/_services/customer.service';
 
 @Component({
   selector: 'app-client-add',
@@ -14,7 +15,8 @@ export class ClientAddComponent implements OnInit {
   constructor(public crudApi: ClientService,
     public fb: FormBuilder,
     public toastr: ToastrService,
-    private router: Router) { }
+    private router: Router,
+    private customerservice:CustomerService) { }
 
   ngOnInit(): void {
     this.myForm();
@@ -40,6 +42,7 @@ export class ClientAddComponent implements OnInit {
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.taskForm.value, null, 4));
     this.crudApi.AddClient(this.taskForm.value).subscribe((data=>{
       this.toastr.success('successfully Added!');
+      this.customerservice.refresh();
       this.crudApi.GetClientList();
     }));
 

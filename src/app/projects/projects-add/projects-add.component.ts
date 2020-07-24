@@ -70,12 +70,14 @@ this.customers=data;
   submitTaskData() {
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.taskForm.value, null, 4));
-    // this.crudApi.AddCustomer(this.taskForm.value).subscribe((data=>{
-    //   this.toastr.success('successfully Added!');
-    //   this.crudApi.GetCustomerList();
-    // }));
+    this.crudApi.AddProject(this.taskForm.value).subscribe((data=>{
+      this.toastr.success('successfully Added!');
+      
+      this.crudApi.GetProjectList();
+    }));
 
     this.ResetForm();
+    this.cusApi.refresh();
    }
 
 }
