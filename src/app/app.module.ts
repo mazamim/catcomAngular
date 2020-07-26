@@ -8,7 +8,7 @@ import { CardsComponent } from './components/cards/cards.component';
 import { TablesComponent } from './components/tables/tables.component';
 import { ProgresstasklistComponent } from './components/progresstasklist/progresstasklist.component';
 
-
+import { SortableModule } from 'ngx-bootstrap/sortable';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -52,7 +52,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { CustomerAddComponent } from './customer/customer-add/customer-add.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
-
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -107,8 +107,8 @@ import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.co
     CarouselModule,
     TimepickerModule.forRoot(),
     MomentModule,
-
-
+    SortableModule.forRoot(),
+    PaginationModule.forRoot()
 
 
 

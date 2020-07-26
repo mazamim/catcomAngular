@@ -36,55 +36,54 @@
                                </select>
 
                             <h4>Describtions</h4>
-                            <textarea name="description" rows="6" class="form-control"
+                            <textarea name="description" rows="3" class="form-control"
                               [(ngModel)]="ticket.describtion"></textarea>
 
 
                               <h4>Remarks</h4>
-                            <textarea name="remarks" rows="6" class="form-control"
+                            <textarea name="remarks" rows="3" class="form-control"
                               [(ngModel)]="ticket.remarks"></textarea>
 
                               <div class="row">
                                <div class="col-md-6">
 
-                                <h4>Customer</h4>
-                                <select class="form-control" name="cus_name" [(ngModel)]="ticket.cus_name" >
+                                <h4>Customer is <b>{{ticket.cus_name}}</b><span> <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onsumbitCustomerEdit()" >Edit</button></span></h4>
 
-                                  <option>Civil SDU</option>
-                                    <option>Duct</option>
-                                    <option>Walkout</option>
-                                    <option>PullThrough</option>
-                                    <option>John</option>
+                                <select class="form-control" name="cus_id" [(ngModel)]="ticket.cus_id" >
+
+                                  <option *ngFor="let itm of customers" [value]="itm.id">
+                                    {{itm.cus_name}}
+                                  </option>
+
 
 
                                  </select>
                                </div>
                                <div class="col-md-6">
-                                <h4>Client</h4>
-                                <select class="form-control" name="client_name" [(ngModel)]="ticket.client_name" >
+                                <h4>Client is <b>{{ticket.client_name}}</b><span> <button type="button" class="btn btn-danger btn-sm ml-1" (click)="onsumbitClientEdit()" >Edit</button></span></h4>
+                                <select class="form-control" name="client_id"  [(ngModel)]="ticket.client_id" >
 
-                                    <option>Civil SDU</option>
-                                    <option>Duct</option>
-                                    <option>Walkout</option>
-                                    <option>PullThrough</option>
-                                    <option>General</option>
-
+                                  <option *ngFor="let itm of clients" [value]="itm.id">
+                                    {{itm.client_name}}
+                                  </option>
 
                                  </select>
-
                                </div>
-
                               </div>
+
+                              <h4>Add Employees <span> <button type="button" class="btn btn-success btn-sm ml-1" (click)="onsumbitEmplyeeAdd()" >Add</button></span></h4>
+                              <select class="form-control" rows="6" name="emp_names" multiple [(ngModel)]="ticket.emp_names" >
+                                <option *ngFor="let itm of employees" [value]="itm.id">
+                                  {{itm.emp_name}} {{itm.lastname}}
+                                </option>
+                              </select>
+
+                              <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block mt-2">Save Changes</button>
                           </form>
 
 
                         </tab>
                         <tab heading="Project Documents">
-
-
-
-
-
 
 
 

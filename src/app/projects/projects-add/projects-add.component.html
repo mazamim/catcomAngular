@@ -26,7 +26,6 @@
     <div class="col-md-5 mb-3">
       <select class="form-control" name="cus_id" formControlName="cus_id">
         <option value="" selected disabled hidden>Choose Customer</option>
-        <option value="1" >General Customer</option>
         <option *ngFor="let itm of customers" [value]="itm.id">
           {{itm.cus_name}}
         </option>

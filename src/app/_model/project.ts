@@ -9,6 +9,8 @@ export interface IProject {
     cus_id :number;
     client_id :number;
     client_name?:string;
-    cus_name?:string
+    cus_name?:string;
+    emp_names?:[];
+    created_at?:Date;
 
   }

@@ -24,6 +24,9 @@ export class ProjectService {
     return this.http.delete<IProject>(this.baseUrl + 'project/'+id);
   }
 
+  UpdateProject(id: number,ticket: IProject) {
+    return this.http.put<IProject>(this.baseUrl + 'project/' + id, ticket);
+  }
 
 
   AddProject(project:IProject){
