@@ -51,6 +51,9 @@ import { AttendanceReportComponent } from './reports/attendance-report/attendanc
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { CustomerAddComponent } from './customer/customer-add/customer-add.component';
 import { RefreshComponent } from './refresh/refresh.component';
+import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +62,7 @@ import { RefreshComponent } from './refresh/refresh.component';
     TablesComponent,
     ProgresstasklistComponent,
 
- 
+
     HomeComponent,
     SectionHeaderComponent,
 
@@ -83,7 +86,8 @@ import { RefreshComponent } from './refresh/refresh.component';
 
     CustomerListComponent,
     CustomerAddComponent,
-    RefreshComponent
+    RefreshComponent,
+    ProjectsEditComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +106,8 @@ import { RefreshComponent } from './refresh/refresh.component';
     TabsModule.forRoot(),
     CarouselModule,
     TimepickerModule.forRoot(),
-    MomentModule
+    MomentModule,
+
 
 
 

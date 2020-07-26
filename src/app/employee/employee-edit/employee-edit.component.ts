@@ -28,7 +28,7 @@ id:number;
    this.crudApi.GetEmployee(this.id).subscribe(data=>{
 
     this.employee=data;
-    console.log(this.employee);
+
    });
 
 

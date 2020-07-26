@@ -1,0 +1,139 @@
+
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+        <div class="row pt-md-5 mt-md-3 mb-5">
+
+          <div class="col-xl-12">
+            <h4 class="text-muted mb-4">Project Edit</h4>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="col-sm-8">
+                    <div *ngIf="editForm.dirty" class="alert alert-info">
+                      <strong>Information:</strong> You have made changes.  Any unsaved changes will be lost!
+                    </div>
+                  </div>
+
+                  <div class="col-sm-8">
+                    <div class="tab-panel">
+                      <tabset class="member-tabset">
+                        <tab heading="Edit Project">
+                          <form #editForm="ngForm" id="editForm" (ngSubmit)="updateProject()">
+                            <h4>Address</h4>
+                              <input type="text"  name="address" class="form-control" [(ngModel)]="ticket.address">
+
+                              <h4>Job Type</h4>
+                              <select class="form-control" name="jobType" [(ngModel)]="ticket.jobType" >
+
+                                <option>Civil SDU</option>
+                                  <option>Duct</option>
+                                  <option>Walkout</option>
+                                  <option>PullThrough</option>
+                                  <option>General</option>
+
+
+                               </select>
+
+                            <h4>Describtions</h4>
+                            <textarea name="description" rows="6" class="form-control"
+                              [(ngModel)]="ticket.describtion"></textarea>
+
+
+                              <h4>Remarks</h4>
+                            <textarea name="remarks" rows="6" class="form-control"
+                              [(ngModel)]="ticket.remarks"></textarea>
+
+                              <div class="row">
+                               <div class="col-md-6">
+
+                                <h4>Customer</h4>
+                                <select class="form-control" name="cus_name" [(ngModel)]="ticket.cus_name" >
+
+                                  <option>Civil SDU</option>
+                                    <option>Duct</option>
+                                    <option>Walkout</option>
+                                    <option>PullThrough</option>
+                                    <option>John</option>
+
+
+                                 </select>
+                               </div>
+                               <div class="col-md-6">
+                                <h4>Client</h4>
+                                <select class="form-control" name="client_name" [(ngModel)]="ticket.client_name" >
+
+                                    <option>Civil SDU</option>
+                                    <option>Duct</option>
+                                    <option>Walkout</option>
+                                    <option>PullThrough</option>
+                                    <option>General</option>
+
+
+                                 </select>
+
+                               </div>
+
+                              </div>
+                          </form>
+
+
+                        </tab>
+                        <tab heading="Project Documents">
+
+
+
+
+
+
+
+
+                        </tab>
+                      </tabset>
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+              </div>
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+

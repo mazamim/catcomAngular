@@ -14,6 +14,11 @@ export class ProjectService {
 
     return this.http.get<IProject[]>(this.baseUrl + 'projects');
   }
+
+  getProject(id:number){
+    return this.http.get<IProject>(this.baseUrl + 'project/'+id);
+
+  }
   DeleteProject(id:number){
 
     return this.http.delete<IProject>(this.baseUrl + 'project/'+id);
