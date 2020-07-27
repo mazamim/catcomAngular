@@ -7,6 +7,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { IAttendance } from 'src/app/_model/attendance';
 import { CustomerService } from 'src/app/_services/customer.service';
+import { FormGroup, FormControl } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-employee-list',
@@ -16,7 +18,9 @@ import { CustomerService } from 'src/app/_services/customer.service';
 export class EmployeeListComponent implements OnInit {
 
   showThisContent$;
-
+  showStatusContent$;
+  punchinRecords:any;
+  punchtime:string
   editEmployee:IEmployee;
   atd:any;
   employees: IEmployee[];
@@ -32,7 +36,7 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.getEmployees();
     this.showThisContent$ =  new BehaviorSubject(false);
-
+    this.showStatusContent$ =  new BehaviorSubject(false);
 
   }
   getEmployees() {
@@ -64,7 +68,19 @@ export class EmployeeListComponent implements OnInit {
 
   }
 
+getPunchInTime(id:number){
+  this.showStatusContent$.next(true);
+  this.crudApi.checkAttendanceStatus(id).subscribe(data=>{
+    this.punchinRecords = data;
+    this.toastr.info(this.punchinRecords[0].punchIn);
+  },(error)=>
+  {
+    this.toastr.warning("No Punch in AVailable");
 
+
+
+  });
+}
 
 
   deleteEmployee(id:number) {
@@ -81,5 +97,7 @@ export class EmployeeListComponent implements OnInit {
        // Alert message will show up when student successfully deleted.
     }
   }
+
+
 
 }

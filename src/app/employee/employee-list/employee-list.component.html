@@ -28,16 +28,30 @@
 
                     <button type="button" class="btn btn-danger btn-sm ml-1"  (click)="deleteEmployee(item.id)">Delete</button>
                     <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/employees/'+ item.id]">Edit</button>
-                    <button type="button"
-                    class="btn btn-secondary btn-sm mr-auto p-2 mt-2"
+                    <div class="btn-group btn-sm mr-auto p-2 mt-2" dropdown>
+                      <button id="button-basic" dropdownToggle type="button" class="btn btn-danger dropdown-toggle"
+                              aria-controls="dropdown-basic">
+                        Attendance <span class="caret"></span>
+                      </button>
+                      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                          role="menu" aria-labelledby="button-basic">
+                        <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="getPunchInTime(item.id)">Status</a></li>
+                        <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)=showContent(item)>Punch IN/OUT</a></li>
 
-                    (click)=showContent(item)>Attendance</button>
+
+                        <li class="divider dropdown-divider"></li>
+
+                      </ul>
+                    </div>
 
                   </div>
-                  <pre class="alert alert-info mt-2">{{item.lastname}} is Punch In at: {{atd?.punchIn}}</pre>
+
               </div>
 
-              </accordion-group>
+
+
+
+            </accordion-group>
 
             </accordion>
 
