@@ -66,7 +66,7 @@
                   <td>{{item.emp_name}}</td>
                   <td>{{item.punchIn}}</td>
                   <td>{{item.punchOut}}</td>
-                  <td>time</td>
+                  <td>{{calculateDiff(item.punchOut,item.punchIn)}}</td>
                 </tr>
 
               </tbody>

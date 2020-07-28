@@ -70,4 +70,13 @@ this.api.getAttendanceslistbydate(this.myForm.value).subscribe(data=>{
 
   });
 
+  calculateDiff(sentDate1,sentDate2) {
+    var date1:any = new Date(sentDate1).getTime();
+    var date2:any = new Date(sentDate2).getTime();
+   // var diffDays:any = Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
+   let time = date1 - date2;
+   let hoursDiff = time / (3600 * 1000);
+    return hoursDiff;
+}
+
 }
