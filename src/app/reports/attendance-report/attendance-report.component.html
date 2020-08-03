@@ -50,27 +50,13 @@
             </form>
             <br>
 
-            <table class="table">
-              <thead class="thead-light">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Punch In</th>
-                  <th scope="col">Punch Out</th>
-                  <th scope="col">Total Hours Worked</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of atdlist let i = index">
-                  <th scope="row">{{i+1}}</th>
-                  <td>{{item.emp_name}}</td>
-                  <td>{{item.punchIn}}</td>
-                  <td>{{item.punchOut}}</td>
-                  <td>{{calculateDiff(item.punchOut,item.punchIn)}}</td>
-                </tr>
-
-              </tbody>
-            </table>
+            <ag-grid-angular
+            style="width: 100%; height: 500px;"
+            class="ag-theme-alpine"
+            [rowData]="rowData"
+            [columnDefs]="columnDefs"
+            >
+        </ag-grid-angular>
 
 
 

@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { TablesComponent } from './components/tables/tables.component';
 import { ProgresstasklistComponent } from './components/progresstasklist/progresstasklist.component';
-
+import { AgGridModule } from 'ag-grid-angular';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -108,8 +108,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     TimepickerModule.forRoot(),
     MomentModule,
     SortableModule.forRoot(),
-    PaginationModule.forRoot()
-
+    PaginationModule.forRoot(),
+    AgGridModule.withComponents([])
 
 
   ],

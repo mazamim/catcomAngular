@@ -48,10 +48,6 @@ export class AttendanceComponent implements OnInit {
     punchtime: new FormControl(new Date()),
   });
 
-
-
-
-
   onSubmit(){
 
 const punchD = moment(this.myForm.controls['punchIn'].value).format('YYYY/MM/DD');
@@ -89,7 +85,6 @@ this.api.employeePunchIn(this.myForm.value).subscribe(data=>{
         this.myForm2.patchValue({
           punchOut: punchD +" " + punchT })
 
-        console.log(this.myForm2.value);
 
     this.api.employeePunchOut(this.myForm2.value).subscribe(data=>{
       this.toastr.success(' successfully updated!');
