@@ -16,7 +16,7 @@ export class AttendanceReportComponent implements OnInit {
     {headerName: 'Employee', field: 'emp_name',sortable: true,filter: true },
     {headerName: 'PunchIn', field: 'punchIn' },
     {headerName: 'Punch Out', field: 'punchOut'},
-    {headerName: 'Work hours', field: 'wkh'}
+    {headerName: 'Work hours', field: 'timediff'}
   ];
 
   rowData : any;
