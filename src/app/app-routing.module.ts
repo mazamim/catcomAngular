@@ -14,15 +14,18 @@ import { AttendanceReportComponent } from './reports/attendance-report/attendanc
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
+import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
+import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 
 
 const routes: Routes = [
 
   { path: '', component: HomeComponent, data: { breadcrumb: 'Dashboard' }},
-
+  { path: 'addbulk', component: AddBulkTicketComponent, data: { breadcrumb: 'add' }},
 
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
+  { path: 'viewall', component: ShowallprojectsComponent, data: { breadcrumb: 'viewall' }},
   { path: 'projects/:id', component: ProjectsEditComponent,data: { breadcrumb: 'Edit Project' }},
   { path: 'employees', component: EmployeeListComponent, data: { breadcrumb: 'Employees' }},
   { path: 'customers', component: CustomerListComponent, data: { breadcrumb: 'Employees' }},

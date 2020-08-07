@@ -15,6 +15,11 @@ export class ProjectService {
     return this.http.get<IProject[]>(this.baseUrl + 'projects');
   }
 
+  GetProjectListforindex(){
+
+    return this.http.get<IProject[]>(this.baseUrl + 'projects8');
+  }
+
   getProject(id:number){
     return this.http.get<IProject>(this.baseUrl + 'project/'+id);
 

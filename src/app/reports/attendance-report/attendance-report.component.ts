@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import * as moment from 'moment';
-import { IAtdlist } from 'src/app/_model/attendance';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource, MatTable} from '@angular/material/table';
+import {MatPaginator} from '@angular/material/paginator';
+import { ITableData } from 'src/app/_model/attendance';
 
 @Component({
   selector: 'app-attendance-report',
@@ -11,14 +14,11 @@ import { IAtdlist } from 'src/app/_model/attendance';
   styleUrls: ['./attendance-report.component.scss']
 })
 export class AttendanceReportComponent implements OnInit {
+  ELEMENT_DATA:ITableData[];
+  displayedColumns: string[] = ['empname', 'punchin', 'punchout', 'duration','earn'];
+ dataSource=new MatTableDataSource<ITableData>(this.ELEMENT_DATA);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
-  columnDefs = [
-    {headerName: 'Employee', field: 'emp_name',sortable: true,filter: true },
-    {headerName: 'PunchIn', field: 'punchIn' },
-    {headerName: 'Punch Out', field: 'punchOut'},
-    {headerName: 'Work hours', field: 'timediff'},
-    {headerName: 'Earned for the Day', field: 'earned'}
-  ];
 
   rowData : any;
 
@@ -37,19 +37,29 @@ export class AttendanceReportComponent implements OnInit {
   constructor(private api:EmployeeService) { }
 
   ngOnInit(): void {
-    this.api.getAttendanceslistbydate(this.obj).subscribe(data=>{
 
-      this.rowData = data;
-
-     });
      this.api.GetEmployeeList().subscribe(data=>{
 
       this.employees=data;
      })
 
-
+  this.getAllData();
+  this.dataSource.paginator = this.paginator;
 
   }
+
+  public getAllData(){
+
+    this.api.getAttendanceslistbydate(this.obj).subscribe(data=>{
+    this.dataSource.data = data as ITableData[]
+
+     });
+  }
+
+  onRowClicked(row) {
+
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(row, null, 4));
+}
 
 
 
@@ -64,10 +74,10 @@ const punchInTo = moment(this.myForm.controls['endIn'].value).format('YYYY/MM/DD
 
     })
 
-
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.myForm.value, null, 4));
 this.api.getAttendanceslistbydate(this.myForm.value).subscribe(data=>{
 
- this.rowData=data;
+  this.dataSource.data = data as ITableData[]
 
 });
 
@@ -116,7 +126,9 @@ else{return 'on-site'}
 }
 
 
-
+applyFilter(filterValue:string){
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
 
 

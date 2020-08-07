@@ -24,7 +24,7 @@ export class ProjectsListComponent implements OnInit {
   }
 
   getProjects() {
-    this.crudApi.GetProjectList().subscribe(response => {
+    this.crudApi.GetProjectListforindex().subscribe(response => {
       this.projects = response;
 
     }, error => {

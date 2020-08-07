@@ -53,11 +53,26 @@ import { CustomerAddComponent } from './customer/customer-add/customer-add.compo
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CustomisedCellComponent } from './customised-cell/customised-cell.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+
+import { MatTableExporterModule } from 'mat-table-exporter';
+//material
+import { MatSliderModule } from '@angular/material/slider';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import {MatSortModule} from '@angular/material/sort';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
+import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+
     CardsComponent,
     TablesComponent,
     ProgresstasklistComponent,
@@ -87,7 +102,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     CustomerListComponent,
     CustomerAddComponent,
     RefreshComponent,
-    ProjectsEditComponent
+    ProjectsEditComponent,
+    CustomisedCellComponent,
+    AddBulkTicketComponent,
+    ShowallprojectsComponent
   ],
   imports: [
     BrowserModule,
@@ -109,11 +127,22 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     MomentModule,
     SortableModule.forRoot(),
     PaginationModule.forRoot(),
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([CustomisedCellComponent]),
+    MatSliderModule,
+    MatTableModule,
+    MatPaginatorModule,
+    NgxSpinnerModule,
+    MatTableExporterModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule
+
 
 
   ],
-  providers: [EmployeeService],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
