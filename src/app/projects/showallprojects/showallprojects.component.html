@@ -69,22 +69,24 @@
 
             </form>
             <br>
+            <button mat-raised-button>
+              <mat-icon>add</mat-icon>Create
+            </button>
+            <br><br>
+            <div class="mat-elevation-z8" matSort>
 
 
-            <div class="mat-elevation-z8">
-
-
-              <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter">
+              <table mat-table  matTableExporter [dataSource]="dataSource" #exporter="matTableExporter">
 
                 <!-- Position Column -->
                 <ng-container matColumnDef="address">
-                  <th mat-header-cell *matHeaderCellDef> Address </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
                   <td mat-cell *matCellDef="let element"> {{element.address}} </td>
                 </ng-container>
 
                 <!-- Name Column -->
                 <ng-container matColumnDef="jobType">
-                  <th mat-header-cell *matHeaderCellDef> Job Type </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Job Type </th>
                   <td mat-cell *matCellDef="let element"> {{element.jobType}} </td>
                 </ng-container>
 
@@ -96,7 +98,7 @@
 
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="status">
-                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                   <td mat-cell *matCellDef="let element"> {{element.status}} </td>
                 </ng-container>
 
@@ -108,24 +110,33 @@
 
                               <!-- Symbol Column -->
                               <ng-container matColumnDef="cus_name">
-                                <th mat-header-cell *matHeaderCellDef> Customer</th>
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer</th>
                                 <td mat-cell *matCellDef="let element"> {{element.cus_name}} </td>
                               </ng-container>
 
                                       <!-- Symbol Column -->
                       <ng-container matColumnDef="client_name">
-                        <th mat-header-cell *matHeaderCellDef> Client</th>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Client</th>
                         <td mat-cell *matCellDef="let element"> {{element.client_name}} </td>
                       </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let element">
+                          <button mat-icon-button><mat-icon>launch</mat-icon></button>
+                          <button mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+
+                        </td>
+                      </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-            ></tr>
+                (click)="onRowClicked(row)" ></tr>
 
               </table>
 
               <mat-paginator
-              [pageSizeOptions]="[20, 30, 50]"
+              [pageSizeOptions]="[10, 20, 30, 40, 50]"
               showFirstLastButtons
 
               >

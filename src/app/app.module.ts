@@ -55,7 +55,8 @@ import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.co
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CustomisedCellComponent } from './customised-cell/customised-cell.component';
 import { NgxSpinnerModule } from "ngx-spinner";
-
+import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
+import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
 //material
 import { MatSliderModule } from '@angular/material/slider';
@@ -65,8 +66,23 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
-import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
+import { TestComponent } from './test/test.component';
+import { AddUsingTableComponent } from './projects/add-using-table/add-using-table.component';
+
+
 
 @NgModule({
   declarations: [
@@ -105,7 +121,11 @@ import { ShowallprojectsComponent } from './projects/showallprojects/showallproj
     ProjectsEditComponent,
     CustomisedCellComponent,
     AddBulkTicketComponent,
-    ShowallprojectsComponent
+    ShowallprojectsComponent,
+    TestComponent,
+    AddUsingTableComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -135,13 +155,44 @@ import { ShowallprojectsComponent } from './projects/showallprojects/showallproj
     MatTableExporterModule,
     MatSortModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SocialLoginModule,
+    MatIconModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatSelectModule
 
 
 
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '688957477804-7t5edtk8pfr8kcqhj1qt3988ids1jr26.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId'),
+          },
+          {
+            id: AmazonLoginProvider.PROVIDER_ID,
+            provider: new AmazonLoginProvider(
+              'clientId'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,77 @@
+
+
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+        <div class="row pt-md-5 mt-md-3 mb-5">
+
+          <div class="col-xl-6">
+            <h4 class="text-muted mb-4">Employees</h4>
+
+            <div class="jumbotron bg-transparent text-center">
+              <div *ngIf="!user" class="card text-center">
+                <h6 class="card-header">
+                  Social Login Demo
+                </h6>
+                <div class="card-block">
+                  <h4 class="card-title">Not signed in</h4>
+                  <p class="card-text">Sign in with</p>
+                </div>
+                <div class="card-block">
+                  <button class="btn btn-social-icon btn-google" (click)="signInWithGoogle()">google</button>
+
+
+                </div>
+              </div>
+              <div *ngIf="user" class="card text-center">
+                <h6 class="card-header">
+                  Social Login Demo
+                </h6>
+                <div class="card-block"></div>
+                <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+                <div class="card-block">
+                  <h4 class="card-title">{{ user.name }}</h4>
+                  <p class="card-text">{{ user.email }}</p>
+                </div>
+                <div class="card-block">
+                  <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+
+                </div>
+
+
+
+          <form #imageForm=ngForm (ngSubmit)="upload(Caption,Image)">
+            <div class="row">
+              <div class="input-field col s12">
+                <input type="text" #Caption ngModel name="Caption" id="Caption" required>
+                <label for="Caption">Caption</label>
+              </div>
+            </div>
+            <img [src]="imageUrl"  style="width:250px;height:200px">
+            <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+            <button type="submit" class="btn-large btn-submit" [disabled]="Image.value=='' || !imageForm.valid">Submit</button>
+          </form>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-xl-6 mt-5">
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+

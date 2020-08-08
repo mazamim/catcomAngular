@@ -16,13 +16,14 @@ import { RefreshComponent } from './refresh/refresh.component';
 import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
 import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
 import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
+import { TestComponent } from './test/test.component';
 
 
 const routes: Routes = [
 
   { path: '', component: HomeComponent, data: { breadcrumb: 'Dashboard' }},
   { path: 'addbulk', component: AddBulkTicketComponent, data: { breadcrumb: 'add' }},
-
+  { path: 'test', component: TestComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
   { path: 'viewall', component: ShowallprojectsComponent, data: { breadcrumb: 'viewall' }},
