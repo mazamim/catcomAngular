@@ -7,6 +7,9 @@ import { ICustomer } from 'src/app/_model/customer';
 import { CustomerService } from 'src/app/_services/customer.service';
 import { IClient } from 'src/app/_model/client';
 import { ClientService } from 'src/app/_services/client.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddJobTypesComponent } from '../add-job-types/add-job-types.component';
+import { IJobType } from 'src/app/_model/project';
 
 @Component({
   selector: 'app-projects-add',
@@ -17,19 +20,23 @@ export class ProjectsAddComponent implements OnInit {
   public taskForm: FormGroup;
   customers:ICustomer[];
   clients:IClient[];
+  jobtype:IJobType[];
 
   constructor(public crudApi: ProjectService,
     public fb: FormBuilder,
     public toastr: ToastrService,
     private router: Router,
     private cusApi:CustomerService,
-    private clientApi:ClientService) { }
+    private clientApi:ClientService,
+
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
     this.myForm();
     this.loadCustomer();
     this.loadClient();
+    this.loadJobtype();
   }
 
   myForm() {
@@ -79,5 +86,24 @@ this.customers=data;
     this.ResetForm();
     this.cusApi.refresh();
    }
+
+   addJobTypes(){
+    this.dialog.open(AddJobTypesComponent,{
+      width: '50%',
+      height:'60%',
+     data:{name:'mazahim'}
+    }
+    );
+
+   }
+
+   public loadJobtype(){
+
+    this.crudApi.getAllJobtype().subscribe(data=>{
+    this.jobtype= data as IJobType[]
+
+     });
+  }
+
 
 }

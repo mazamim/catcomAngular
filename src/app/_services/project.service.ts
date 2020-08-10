@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { IProject } from '../_model/project';
+import { IProject, IJobType, ICount } from '../_model/project';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
@@ -40,6 +40,24 @@ export class ProjectService {
     return this.http.post<IProject>(this.baseUrl + 'projects', project );
 
   }
+
+
+  AddJobtype(jobtype:IJobType){
+
+    return this.http.post<IJobType>(this.baseUrl + 'jobtypes', jobtype );
+
+  }
+
+  getAllJobtype(){
+    return this.http.get<IJobType[]>(this.baseUrl + 'jobtypes');
+
+  }
+
+getNumbersCompleted(){
+
+  return this.http.get<ICount[]>(this.baseUrl + 'countJobs');
+
+}
 
 
 

@@ -4,33 +4,22 @@
       <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
         <div class="row mb-4 align-items-center">
           <div class="col-xl-6 col-12 mb-4 mb-xl-0">
-            <div class="bg-dark text-white p-4 rounded">
-              <h4 class="mb-5">Job Type</h4>
-              <h6 class="mb-3">Civil Jobs</h6>
-              <div class="progress mb-4" style="height: 20px">
-                <div class="progress-bar progress-bar-striped font-weight-bold" style="width: 91%">
-                  91%
-                </div>
-              </div>
-              <h6 class="mb-3">Duct Jobs</h6>
-              <div class="progress mb-4" style="height: 20px">
-                <div class="progress-bar progress-bar-striped font-weight-bold bg-success" style="width: 82%">
-                  82%
-                </div>
-              </div>
-              <h6 class="mb-3">Pull Through only</h6>
-              <div class="progress mb-4" style="height: 20px">
-                <div class="progress-bar progress-bar-striped font-weight-bold bg-danger" style="width: 67%">
-                  67%
-                </div>
-              </div>
-              <h6 class="mb-3">Private Jobs</h6>
-              <div class="progress mb-4" style="height: 20px">
-                <div class="progress-bar progress-bar-striped font-weight-bold bg-info" style="width: 10%">
-                  10%
-                </div>
-              </div>
-            </div>
+
+            <ngx-charts-bar-horizontal
+            [view]="[700,300]"
+            [results]="chartdata"
+            [xAxisLabel]="'Count'"
+            [legendTitle]="'Product Sale Chart'"
+            [yAxisLabel]="'Status'"
+            [legend]="true"
+            [showXAxisLabel]="false"
+            [showYAxisLabel]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [gradient]="true">
+        </ngx-charts-bar-horizontal>
+
+
           </div>
           <div class="col-xl-6 col-12">
             <h4 class="text-muted p-3 mb-3">Tasks:</h4>
@@ -50,9 +39,9 @@
                 </div>
               </div>
             </div>
-       
-           
-        
+
+
+
           </div>
         </div>
       </div>

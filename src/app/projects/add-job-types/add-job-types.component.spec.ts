@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CustomisedCellComponent } from './customised-cell.component';
+import { AddJobTypesComponent } from './add-job-types.component';
 
-describe('CustomisedCellComponent', () => {
-  let component: CustomisedCellComponent;
-  let fixture: ComponentFixture<CustomisedCellComponent>;
+describe('AddJobTypesComponent', () => {
+  let component: AddJobTypesComponent;
+  let fixture: ComponentFixture<AddJobTypesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomisedCellComponent ]
+      declarations: [ AddJobTypesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CustomisedCellComponent);
+    fixture = TestBed.createComponent(AddJobTypesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

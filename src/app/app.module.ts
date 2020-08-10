@@ -7,7 +7,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { TablesComponent } from './components/tables/tables.component';
 import { ProgresstasklistComponent } from './components/progresstasklist/progresstasklist.component';
-import { AgGridModule } from 'ag-grid-angular';
+
 import { SortableModule } from 'ngx-bootstrap/sortable';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,11 +53,12 @@ import { CustomerAddComponent } from './customer/customer-add/customer-add.compo
 import { RefreshComponent } from './refresh/refresh.component';
 import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { CustomisedCellComponent } from './customised-cell/customised-cell.component';
+
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
 import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 //material
 import { MatSliderModule } from '@angular/material/slider';
 import {MatTableModule} from '@angular/material/table';
@@ -81,6 +82,7 @@ import {
 } from 'angularx-social-login';
 import { TestComponent } from './test/test.component';
 import { AddUsingTableComponent } from './projects/add-using-table/add-using-table.component';
+import { AddJobTypesComponent } from './projects/add-job-types/add-job-types.component';
 
 
 
@@ -119,11 +121,12 @@ import { AddUsingTableComponent } from './projects/add-using-table/add-using-tab
     CustomerAddComponent,
     RefreshComponent,
     ProjectsEditComponent,
-    CustomisedCellComponent,
+
     AddBulkTicketComponent,
     ShowallprojectsComponent,
     TestComponent,
     AddUsingTableComponent,
+    AddJobTypesComponent,
 
 
   ],
@@ -147,7 +150,7 @@ import { AddUsingTableComponent } from './projects/add-using-table/add-using-tab
     MomentModule,
     SortableModule.forRoot(),
     PaginationModule.forRoot(),
-    AgGridModule.withComponents([CustomisedCellComponent]),
+
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
@@ -162,7 +165,8 @@ import { AddUsingTableComponent } from './projects/add-using-table/add-using-tab
     MatToolbarModule,
     MatGridListModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxChartsModule
 
 
 

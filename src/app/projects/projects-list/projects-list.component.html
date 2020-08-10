@@ -8,7 +8,7 @@
               <h4 class="text-muted mb-4">Ticket</h4>
 
               <accordion [isAnimated]="true" *ngFor="let item of projects">
-                <accordion-group heading = "{{item.address}}">
+                <accordion-group heading = "{{item?.address}}">
 
                   <div class="p-2">
 
@@ -69,7 +69,7 @@
             <div class="col-xl-6 mt-5">
 
 
-                <app-projects-add></app-projects-add>
+              <app-projects-add></app-projects-add>
 
             </div>
           </div>

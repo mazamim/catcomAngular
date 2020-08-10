@@ -14,3 +14,23 @@ export interface IProject {
     created_at?:Date;
 
   }
+
+  export interface IJobType {
+
+    id: number;
+    jobType: string;
+    describtion?: string;
+    measurement?: string;
+    unitPrice?: string
+    created_at?:Date;
+    updated_at?:Date;
+
+  }
+
+  export interface ICount {
+    name: string;
+    value: number;
+
+
+
+  }
