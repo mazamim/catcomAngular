@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IProject } from '../_model/project';
 import { Contact } from '../projects/add-bulk-ticket/add-bulk-ticket.component';
+import { BulkRatecard } from '../ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,12 @@ export class ExcelService {
   AddbulkTickets(ticket: Contact[]) {
 
     return this.http.post<Contact>(this.baseUrl + 'addbulk', ticket );
+}
+
+
+AddbulkRatecard(ratecards: BulkRatecard[]) {
+
+  return this.http.post<BulkRatecard>(this.baseUrl + 'addbulkratecard', ratecards);
 }
 
 }

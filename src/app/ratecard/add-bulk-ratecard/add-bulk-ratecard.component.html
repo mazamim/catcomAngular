@@ -1,0 +1,74 @@
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+        <div class="row pt-md-5 mt-md-3 mb-5">
+
+          <div class="col-xl-12">
+            <h4 class="text-muted mb-4">Rate Card</h4>
+
+
+            <div class="container">
+              <div class="title">Excel</div>
+              <div class="sub-title">Import data from Excel</div>
+
+
+
+              <hr>
+
+              <div class="tools">
+                <button>
+                  <label>
+                    <span class="mdi mdi-file-export"> </span>
+                    <small>Import</small>
+                    <input hidden type="file" (change)="onFileChange($event)" multiple="false">
+                  </label>
+                </button>
+
+
+              </div>
+
+              <table id="contactJs" class="table-contact">
+                <tr class="thead">
+
+                  <th>sor</th>
+                  <th>description</th>
+                  <th>uom</th>
+                  <th>rate</th>
+                  <th>category</th>
+                  <th>client_id </th>
+                  <th>remarks</th>
+                </tr>
+                <tr class="tbody" *ngFor="let data of importBulkRatecard index as i; let odd = odd" [ngClass]="{'odd': odd}">
+
+                  <td>{{data?.sor}}</td>
+                  <td>{{data?.description}}</td>
+                  <td>{{data?.uom}}</td>
+                  <td>{{data?.rate}}</td>
+                   <td>{{data?.category}}</td>
+                  <td>{{data?.client_id}}</td>
+                  <td>{{data?.remarks}}</td>
+                </tr>
+              </table>
+
+            </div>
+
+            <button type="submit" class="btn btn-success" style="margin-left:10px" (click)="onSumbit()">Save All</button>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+

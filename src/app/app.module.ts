@@ -83,6 +83,7 @@ import {
 import { TestComponent } from './test/test.component';
 import { AddUsingTableComponent } from './projects/add-using-table/add-using-table.component';
 import { AddJobTypesComponent } from './projects/add-job-types/add-job-types.component';
+import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
 
 
 
@@ -127,6 +128,7 @@ import { AddJobTypesComponent } from './projects/add-job-types/add-job-types.com
     TestComponent,
     AddUsingTableComponent,
     AddJobTypesComponent,
+    AddBulkRatecardComponent,
 
 
   ],

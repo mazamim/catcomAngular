@@ -17,12 +17,14 @@ import { ProjectsEditComponent } from './projects/projects-edit/projects-edit.co
 import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-ticket.component';
 import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 import { TestComponent } from './test/test.component';
+import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
 
 
 const routes: Routes = [
 
   { path: '', component: HomeComponent, data: { breadcrumb: 'Dashboard' }},
   { path: 'addbulk', component: AddBulkTicketComponent, data: { breadcrumb: 'add' }},
+  { path: 'addbulkratecard', component: AddBulkRatecardComponent, data: { breadcrumb: 'Ratecard' }},
   { path: 'test', component: TestComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},
