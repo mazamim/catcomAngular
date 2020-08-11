@@ -60,6 +60,13 @@ getNumbersCompleted(){
 }
 
 
+getNumbersforIndexPage(){
+
+  return this.http.get<ICount[]>(this.baseUrl + 'countIndexPage');
+
+}
+
+
 
 
 

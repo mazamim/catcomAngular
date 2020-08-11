@@ -4,118 +4,61 @@
       <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
         <div class="row align-items-center">
           <div class="col-xl-6 col-12 mb-4 mb-xl-0">
-            <h3 class="text-muted text-center mb-3">Staff Attendace</h3>
-            <table class="table table-striped bg-light text-center">
+            <h1>
+              Attendance Report
+            </h1>
+            <table class="table table-bordered table-striped">
               <thead>
-                <tr class="text-muted">
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Puch In</th>
-                  <th>Puch Out</th>
-                  <th>Total Hours Worked</th>
+                <tr>
+                  <td>Name</td>
+                  <td>Punch-In</td>
+                  <td>Punch-Out</td>
+                  <td>Salary</td>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>John</td>
-                  <td>$2000</td>
-                  <td>25/05/2018</td>
-                  <td><button type="button" class="btn btn-info btn-sm">Message</button></td>
-                </tr>
-           
+                <tr *ngFor="let emp of employees | paginate: { id: 'listing_pagination',
+                                                                itemsPerPage: 5,
+                                                                currentPage: page,
+                                                                totalItems: totalRec }">
+                  <td>{{emp.emp_name}}</td>
+                  <td>{{emp.punchIn}}</td>
+                  <td>{{emp.punchOut}}</td>
+                  <td>{{emp.earned}}</td>
+              </tr>
               </tbody>
             </table>
+            <div>
+              <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            </div>
 
-            <!-- pagination -->
-            <nav>
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    <span>&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link py-2 px-3">
-                    1
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    2
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    3
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    <span>&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <!-- end of pagination -->
 
           </div>
+
+
           <div class="col-xl-6 col-12">
-            <h3 class="text-muted text-center mb-3">Customer Details</h3>
-            <table class="table table-dark table-hover text-center">
-              <thead>
-                <tr class="text-muted">
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Contact Number</th>
-                  <th>Create at</th>
-             
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>Monica</td>
-                  <td>$2000</td>
-                  <td>25/05/2018</td>
-                  <td><span class="badge badge-success w-75 py-2">View</span></td>
-                </tr>
-            
-             
-             
-              </tbody>
-            </table>
-             <!-- pagination -->
-             <nav>
-              <ul class="pagination justify-content-center">
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    <span>Previous</span>
-                  </a>
-                </li>
-                <li class="page-item active">
-                  <a href="#" class="page-link py-2 px-3">
-                    1
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    2
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    3
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a href="#" class="page-link py-2 px-3">
-                    <span>Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <!-- end of pagination -->
+            <h1 style="text-align: center;">
+             Ticket Status
+            </h1>
+
+
+            <ngx-charts-bar-horizontal
+            [view]="[700,300]"
+            [results]="chartdata"
+            [xAxisLabel]="'Count'"
+            [legendTitle]="'Product Sale Chart'"
+            [yAxisLabel]="'Status'"
+            [legend]="true"
+            [showXAxisLabel]="false"
+            [showYAxisLabel]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [gradient]="true">
+        </ngx-charts-bar-horizontal>
+
+
+
+
           </div>
         </div>
       </div>

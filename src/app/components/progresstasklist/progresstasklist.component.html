@@ -5,19 +5,33 @@
         <div class="row mb-4 align-items-center">
           <div class="col-xl-6 col-12 mb-4 mb-xl-0">
 
-            <ngx-charts-bar-horizontal
-            [view]="[700,300]"
-            [results]="chartdata"
-            [xAxisLabel]="'Count'"
-            [legendTitle]="'Product Sale Chart'"
-            [yAxisLabel]="'Status'"
-            [legend]="true"
-            [showXAxisLabel]="false"
-            [showYAxisLabel]="false"
-            [xAxis]="true"
-            [yAxis]="true"
-            [gradient]="true">
-        </ngx-charts-bar-horizontal>
+            <h1>
+              Ticket Summary
+            </h1>
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <td>Site-Address</td>
+                  <td>Job-Type</td>
+                  <td>Status</td>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let emp of employees | paginate: { id: 'listing_pagination',
+                                                                itemsPerPage: 4,
+                                                                currentPage: page,
+                                                                totalItems: totalRec }">
+                  <td>{{emp.address}}</td>
+                  <td>{{emp.jobType}}</td>
+                  <td>{{emp.status}}</td>
+
+              </tr>
+              </tbody>
+            </table>
+            <div>
+              <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+            </div>
 
 
           </div>

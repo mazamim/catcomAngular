@@ -3,14 +3,25 @@
     <div class="row">
       <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
         <div class="row pt-md-5 mt-md-3 mb-5">
-          <div class="col-xl-3 col-sm-6 p-2">
+          <div class="col-xl-3 col-sm-6 p-2" *ngFor="let item of mydata">
             <div class="card card-common">
               <div class="card-body">
                 <div class="d-flex justify-content-between">
-                  <i class="fas fa-shopping-cart fa-3x text-warning"></i>
+                  <ng-container *ngIf="item.name==='tickets'">
+                  <i [ngClass]="{'fas fa-shopping-cart fa-3x text-warning':item.name==='tickets'}"> </i>
+                </ng-container>
+                <ng-container *ngIf="item.name==='employees'">
+                  <i [ngClass]="{'fas fa-shopping-cart fa-3x text-warning':item.name==='employees'}"> </i>
+                </ng-container>
+                <ng-container *ngIf="item.name==='customers'">
+                  <i [ngClass]="{'fas fa-shopping-cart fa-3x text-warning':item.name==='customers'}"> </i>
+                </ng-container>
+                <ng-container *ngIf="item.name==='clients'">
+                  <i [ngClass]="{'fas fa-shopping-cart fa-3x text-warning':item.name==='clients'}"> </i>
+                </ng-container>
                   <div class="text-right text-secondary">
-                    <h5>Employees</h5>
-                    <h3>6</h3>
+                    <h5>{{item.name}}</h5>
+                    <h3>{{item.value}}</h3>
                   </div>
                 </div>
               </div>
@@ -20,57 +31,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-sm-6 p-2">
-            <div class="card card-common">
-              <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <i class="fas fa-money-bill-alt fa-3x text-success"></i>
-                  <div class="text-right text-secondary">
-                    <h5>Customers</h5>
-                    <h3>10</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-secondary">
-                <i class="fas fa-sync mr-3"></i>
-                <span>Updated Now</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 p-2">
-            <div class="card card-common">
-              <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <i class="fas fa-users fa-3x text-info"></i>
-                  <div class="text-right text-secondary">
-                    <h5>Clients</h5>
-                    <h3>1</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-secondary">
-                <i class="fas fa-sync mr-3"></i>
-                <span>Updated Now</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 p-2">
-            <div class="card card-common">
-              <div class="card-body">
-                <div class="d-flex justify-content-between">
-                  <i class="fas fa-chart-line fa-3x text-danger"></i>
-                  <div class="text-right text-secondary">
-                    <h5>Tickets</h5>
-                    <h3>10</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer text-secondary">
-                <i class="fas fa-sync mr-3"></i>
-                <span>Updated Now</span>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
