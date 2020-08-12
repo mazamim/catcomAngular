@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExcelService } from 'src/app/_services/excel.service';
 import { ToastrService } from 'ngx-toastr';
+import { CustomerService } from 'src/app/_services/customer.service';
 
 export class Contact {
   address: string = "";
@@ -22,7 +23,8 @@ export class AddBulkTicketComponent implements OnInit {
 
 
   constructor(private excelSrv: ExcelService,
-    public toastr: ToastrService) { }
+    public toastr: ToastrService,
+    private cusservice:CustomerService) { }
 
   ngOnInit(): void {
 
@@ -58,12 +60,12 @@ export class AddBulkTicketComponent implements OnInit {
 
 
   onSumbit(){
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.importContacts, null, 4));
+   // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.importContacts, null, 4));
 
     this.excelSrv.AddbulkTickets(this.importContacts).subscribe(data=>{
-      this.toastr.success(' successfully Aded!');
-
-    });
+      this.toastr.success(' successfully Added!');
+      this.cusservice.refresh();
+    }, error=>{alert('ERROR!! :-)\n\n' + JSON.stringify(error.message, null, 4))});
   }
 
 

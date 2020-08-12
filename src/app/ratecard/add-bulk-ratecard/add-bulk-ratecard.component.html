@@ -30,7 +30,7 @@
 
               <table id="contactJs" class="table-contact">
                 <tr class="thead">
-
+                  <th>#</th>
                   <th>sor</th>
                   <th>description</th>
                   <th>uom</th>
@@ -40,7 +40,7 @@
                   <th>remarks</th>
                 </tr>
                 <tr class="tbody" *ngFor="let data of importBulkRatecard index as i; let odd = odd" [ngClass]="{'odd': odd}">
-
+                  <td>{{i+1}}</td>
                   <td>{{data?.sor}}</td>
                   <td>{{data?.description}}</td>
                   <td>{{data?.uom}}</td>

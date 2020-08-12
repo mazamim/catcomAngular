@@ -52,13 +52,12 @@ export class AddJobTypesComponent implements OnInit {
   submitTaskData() {
 
 
-    this.crudApi.AddJobtype(this.taskForm.value).subscribe((data=>{
+    this.crudApi.AddJobtype(this.taskForm.value).subscribe(()=>{
       this.toastr.success('successfully Added!');
-      this.cusApi.refresh();
-      this.getAllData();
-    }));
+    }, error=>{console.log(error)}
+    );
 
-    this.ResetForm();
+
 
    }
 
