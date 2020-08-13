@@ -18,13 +18,15 @@ import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-tick
 import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 import { TestComponent } from './test/test.component';
 import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
+import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
 
 
 const routes: Routes = [
 
   { path: '', component: HomeComponent, data: { breadcrumb: 'Dashboard' }},
   { path: 'addbulk', component: AddBulkTicketComponent, data: { breadcrumb: 'add' }},
-  { path: 'addbulkratecard', component: AddBulkRatecardComponent, data: { breadcrumb: 'Ratecard' }},
+  { path: 'ratecard', component: RatecardComponent, data: { breadcrumb: 'Rate Card' }},
+  { path: 'addbulkratecard', component: AddBulkRatecardComponent, data: { breadcrumb: 'Add Ratecard' }},
   { path: 'test', component: TestComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'tasks', component: TaskListComponent, data: { breadcrumb: 'Tasks' }},
   { path: 'projects', component: ProjectsListComponent, data: { breadcrumb: 'Projects' }},

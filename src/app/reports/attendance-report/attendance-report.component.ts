@@ -18,10 +18,7 @@ export class AttendanceReportComponent implements OnInit {
   displayedColumns: string[] = ['empname', 'punchin', 'punchout', 'duration','earn'];
  dataSource=new MatTableDataSource<ITableData>(this.ELEMENT_DATA);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-
-
   rowData : any;
-
   show: boolean = false;
   employees:IEmployee[];
   obj:any={
@@ -31,16 +28,12 @@ export class AttendanceReportComponent implements OnInit {
       "endIn": "2020-07-21 07:40:14"
 
   };
-
-
-
   constructor(private api:EmployeeService) { }
 
   ngOnInit(): void {
 
      this.api.GetEmployeeList().subscribe(data=>{
-
-      this.employees=data;
+     this.employees=data;
      })
 
   this.getAllData();
@@ -75,9 +68,9 @@ const punchInTo = moment(this.myForm.controls['endIn'].value).format('YYYY/MM/DD
     })
 
     alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.myForm.value, null, 4));
-this.api.getAttendanceslistbydate(this.myForm.value).subscribe(data=>{
+    this.api.getAttendanceslistbydate(this.myForm.value).subscribe(data=>{
 
-  this.dataSource.data = data as ITableData[]
+    this.dataSource.data = data as ITableData[]
 
 });
 
@@ -92,46 +85,9 @@ this.api.getAttendanceslistbydate(this.myForm.value).subscribe(data=>{
 
   });
 
-  calculateDiff(sentDate1,sentDate2) {
-
-    var date1:any = new Date(sentDate1).getTime();
-    var date2:any = new Date(sentDate2).getTime();
-   // var diffDays:any = Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
-
-   let time = date1 - date2;
-   let hoursDiff = time / (3600 * 1000);
-
-if (hoursDiff > 0)
-{
-
-   return hoursDiff;
-
-  }
-else{return 'on-site'}
-
-}
-
-
-checkpunchout(sentDate1,sentDate2){
-
-  var date1:any = new Date(sentDate1).getTime();
-  var date2:any = new Date(sentDate2).getTime();
- // var diffDays:any = Math.floor((date2 - date1) / (1000 * 60 * 60 * 24));
-
- let time = date1 - date2;
- let hoursDiff = time / (3600 * 1000);
-
-if (hoursDiff > 0){  return sentDate1;}
-else{return 'on-site'}
-}
-
-
 applyFilter(filterValue:string){
   this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-
-
 
 }
 

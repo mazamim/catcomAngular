@@ -2,16 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ExcelService } from 'src/app/_services/excel.service';
 import { CustomerService } from 'src/app/_services/customer.service';
+import { BulkRatecard } from 'src/app/_model/ratecard';
 
-export class BulkRatecard {
-  sor: string = "";
-  description: string = "";
-  uom: string = "";
-  rate: number=0;
- category : string = "";
-  client_id : number=0;
-  remarks: string = "";
-}
+
 
 @Component({
   selector: 'app-add-bulk-ratecard',

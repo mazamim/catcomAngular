@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IProject } from 'src/app/_model/project';
+import { IProject, IJobType } from 'src/app/_model/project';
 import { ProjectService } from 'src/app/_services/project.service';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,10 @@ import { ICustomer } from 'src/app/_model/customer';
 import { IClient } from 'src/app/_model/client';
 import { IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize, tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-using-table',
@@ -23,6 +27,8 @@ export class AddUsingTableComponent implements OnInit {
   clients:IClient[];
   ticket:IProject;
   employees?:IEmployee[];
+  jobtype:IJobType[];
+
   @ViewChild('editForm',{static:true}) editForm: NgForm;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: IProject,
@@ -32,12 +38,13 @@ export class AddUsingTableComponent implements OnInit {
     private router: Router,
     private cusApi:CustomerService,
     private clientApi:ClientService,
-    private empservice:EmployeeService) {}
+    private empservice:EmployeeService,
+    private storage: AngularFireStorage) {}
 
   ngOnInit(): void {
 
    this.ticket=this.data;
-
+this.loadJobtype();
 
   }
 
@@ -51,6 +58,7 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
 
       this.toastr.success('successfully updated!');
       this.editForm.reset(this.ticket);
+      this.cusApi.refresh();
     }, error => {
       console.log('error');
     });
@@ -71,8 +79,33 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
     this.empservice.GetEmployeeList().subscribe(data=>{
       this.employees=data;
     });
+
+
   }
 
+  public loadJobtype(){
+
+    this.crudApi.getAllJobtype().subscribe(data=>{
+    this.jobtype= data as IJobType[]
+
+     });
+  }
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = 'name-your-file-path-here';
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    // observe percentage changes
+    this.uploadPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+        finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+     )
+    .subscribe()
+  }
 
 
 }

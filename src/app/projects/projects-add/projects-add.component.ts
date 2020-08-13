@@ -76,7 +76,7 @@ this.customers=data;
 
   submitTaskData() {
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.taskForm.value, null, 4));
+  //  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.taskForm.value, null, 4));
     this.crudApi.AddProject(this.taskForm.value).subscribe((data=>{
       this.toastr.success('successfully Added!');
       this.cusApi.refresh();

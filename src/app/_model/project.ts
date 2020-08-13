@@ -12,6 +12,7 @@ export interface IProject {
     cus_name?:string;
     emp_names?:[];
     created_at?:Date;
+    jobTypeID?:number;
 
   }
 

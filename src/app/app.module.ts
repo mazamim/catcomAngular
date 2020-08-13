@@ -59,6 +59,10 @@ import { AddBulkTicketComponent } from './projects/add-bulk-ticket/add-bulk-tick
 import { ShowallprojectsComponent } from './projects/showallprojects/showallprojects.component';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 //material
 import { MatSliderModule } from '@angular/material/slider';
 import {MatTableModule} from '@angular/material/table';
@@ -84,6 +88,9 @@ import { TestComponent } from './test/test.component';
 import { AddUsingTableComponent } from './projects/add-using-table/add-using-table.component';
 import { AddJobTypesComponent } from './projects/add-job-types/add-job-types.component';
 import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
+import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
+
+
 
 
 
@@ -129,6 +136,8 @@ import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-
     AddUsingTableComponent,
     AddJobTypesComponent,
     AddBulkRatecardComponent,
+    RatecardComponent,
+
 
 
   ],
@@ -152,7 +161,8 @@ import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-
     MomentModule,
     SortableModule.forRoot(),
     PaginationModule.forRoot(),
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,

@@ -3,7 +3,7 @@ import { ITableData } from 'src/app/_model/attendance';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { EmployeeService } from 'src/app/_services/employee.service';
-import { IProject } from 'src/app/_model/project';
+import { IProject, IJobType } from 'src/app/_model/project';
 import { ProjectService } from 'src/app/_services/project.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
@@ -32,9 +32,10 @@ export class ShowallprojectsComponent implements OnInit {
   });
 
   rowData : any;
-
+  jobtype:IJobType[];
   constructor(private api:ProjectService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public crudApi: ProjectService) { }
 
   ngOnInit(): void {
 
@@ -55,6 +56,7 @@ export class ShowallprojectsComponent implements OnInit {
   applyFilter(filterValue:string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+
 
 
     onRowClicked(row:IProject) {

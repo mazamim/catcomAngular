@@ -4,7 +4,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IProject } from '../_model/project';
 import { Contact } from '../projects/add-bulk-ticket/add-bulk-ticket.component';
-import { BulkRatecard } from '../ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
+import { BulkRatecard } from '../_model/ratecard';
+
 
 @Injectable({
   providedIn: 'root'
