@@ -96,14 +96,9 @@
 
     <tab heading="Upload Pictures">
 
-
-
-
-      <input type="file" (change)="uploadFile($event)" />
+      <input type="file" (change)="uploadFile($event)" multiple/>
       <div>{{ uploadPercent | async }}</div>
       <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
-
-
 
 
     </tab>

@@ -15,12 +15,15 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
-
+import { FileUploader } from 'ng2-file-upload';
+import { AngularFireDatabase } from '@angular/fire/database';
 @Component({
   selector: 'app-add-using-table',
   templateUrl: './add-using-table.component.html',
   styleUrls: ['./add-using-table.component.scss']
 })
+
+
 export class AddUsingTableComponent implements OnInit {
   public taskForm: FormGroup;
   customers:ICustomer[];
@@ -31,6 +34,11 @@ export class AddUsingTableComponent implements OnInit {
 
   @ViewChild('editForm',{static:true}) editForm: NgForm;
 
+
+
+  // uploader: FileUploader;
+
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: IProject,
   public crudApi: ProjectService,
     public fb: FormBuilder,
@@ -39,12 +47,16 @@ export class AddUsingTableComponent implements OnInit {
     private cusApi:CustomerService,
     private clientApi:ClientService,
     private empservice:EmployeeService,
-    private storage: AngularFireStorage) {}
+    private storage: AngularFireStorage,
+    private db:AngularFireDatabase) {
+
+    }
 
   ngOnInit(): void {
 
    this.ticket=this.data;
 this.loadJobtype();
+
 
   }
 
@@ -90,22 +102,24 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
 
      });
   }
+
+
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
-  uploadFile(event) {
-    const file = event.target.files[0];
-    const filePath = 'name-your-file-path-here';
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
 
-    // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
-    task.snapshotChanges().pipe(
-        finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-     )
-    .subscribe()
+  uploadFile(event) {
+    //const file = event.target.files[0];
+
+    for (var i = 0; i < event.target.files.length; i++) {
+      var file = event.target.files[i];
+      const filePath = 'file'+i;
+      const task = this.storage.upload(filePath, file);
+    }
+
+
   }
+
+
 
 
 }
