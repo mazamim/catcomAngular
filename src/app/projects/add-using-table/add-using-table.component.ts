@@ -11,9 +11,9 @@ import { ICustomer } from 'src/app/_model/customer';
 import { IClient } from 'src/app/_model/client';
 import { IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, tap, map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FileUploader } from 'ng2-file-upload';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -25,6 +25,14 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 
 export class AddUsingTableComponent implements OnInit {
+
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string[]>;
+  uploadState: Observable<string>;
+
+
   public taskForm: FormGroup;
   customers:ICustomer[];
   clients:IClient[];
@@ -47,8 +55,7 @@ export class AddUsingTableComponent implements OnInit {
     private cusApi:CustomerService,
     private clientApi:ClientService,
     private empservice:EmployeeService,
-    private storage: AngularFireStorage,
-    private db:AngularFireDatabase) {
+    private afStorage: AngularFireStorage) {
 
     }
 
@@ -102,24 +109,19 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
 
      });
   }
+upload(event) {
+  for (var i = 0; i < event.target.files.length; i++) {
+    const id = Math.random().toString(36).substring(2);
 
-
-  uploadPercent: Observable<number>;
-  downloadURL: Observable<string>;
-
-  uploadFile(event) {
-    //const file = event.target.files[0];
-
-    for (var i = 0; i < event.target.files.length; i++) {
-      var file = event.target.files[i];
-      const filePath = 'file'+i;
-      const task = this.storage.upload(filePath, file);
-    }
-
-
+    this.ref = this.afStorage.ref(id);
+    this.task = this.ref.put(event.target.files[i]);
+    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = this.ref.getDownloadURL())
+   )
+  .subscribe()
   }
-
-
-
+}
 
 }

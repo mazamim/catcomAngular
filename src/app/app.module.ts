@@ -94,6 +94,8 @@ import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -137,6 +139,7 @@ import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
     AddJobTypesComponent,
     AddBulkRatecardComponent,
     RatecardComponent,
+
 
 
 

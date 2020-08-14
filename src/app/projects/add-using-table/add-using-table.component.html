@@ -95,11 +95,37 @@
     </tab>
 
     <tab heading="Upload Pictures">
+      <div class="container">
+        <div class="card">
+          <div class="card-header">
+            Firebase Cloud Storage With Angular
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Select a file for upload:</h5>
+            <input type="file" (change)="upload($event)" multiple />
+            <br><br>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgress | async) + '%'" [attr.aria-valuenow]="(uploadProgress | async)" aria-valuemin="0" aria-valuemax="100">
+              </div>
+            </div>
+            <br>
+            <div class="btn-group" role="group" *ngIf="uploadState | async; let state">
+              <button type="button" class="btn btn-primary" (click)="task.pause()" [disabled]="state === 'paused'">Pause</button>
+              <button type="button" class="btn btn-primary" (click)="task.cancel()" [disabled]="!(state === 'paused' || state ==='running')">Cancel</button>
+              <button type="button" class="btn btn-primary" (click)="task.resume()" [disabled]="state === 'running'">Resume</button>
+            </div>
+            <br><br>
+            <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+              File uploaded:
+              <ng-container *ngFor="let item of downloadSrc">
 
-      <input type="file" (change)="uploadFile($event)" multiple/>
-      <div>{{ uploadPercent | async }}</div>
-      <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+                <a [href]="item">{{item}}</a>
+              </ng-container>
 
+            </div>
+          </div>
+        </div>
+      </div>
 
     </tab>
   </tabset>
