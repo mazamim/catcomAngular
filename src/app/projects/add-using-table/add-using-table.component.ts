@@ -55,6 +55,7 @@ export class AddUsingTableComponent implements OnInit {
   childemployess=[];
   listofrates=[];
   listofratesCode=[];
+
   @ViewChild('editForm',{static:true}) editForm: NgForm;
   constructor(@Inject(MAT_DIALOG_DATA) public data: IProject,
   public crudApi: ProjectService,
@@ -79,6 +80,7 @@ this.getEmployees();
    this.loadJobtype();
 
 this.getEmployeesFromTicket();
+
   }
 
   getEmployees() {
@@ -116,10 +118,6 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
 
   }
 
-  addRates(){
-
-
-  }
 
   loadCustomer(){
     this.cusApi.GetCustomerList().subscribe(data=>{
@@ -173,6 +171,14 @@ displayfromchild(result) {
   this.listofratesCode.push(result);
   this.listofrates.push(this.listofratesCode.map( (o)=> o.id));
 }
+
+// displayFromchildExisting(){
+// this.crudApi.ratechildbyproject(this.ticket.id).subscribe(data=>{
+//  this.listofratesCode = data as any[];
+//  this.listofrates = this.listofratesCode.map( (o)=> o.id);
+// })
+
+// }
 
 }
 

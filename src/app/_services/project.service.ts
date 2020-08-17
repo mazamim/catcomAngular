@@ -74,5 +74,11 @@ getChildren(id:number){
 
 }
 
+ratechildbyproject(id:number){
+
+  return this.http.get<any[]>(this.baseUrl + 'ratechildbyproject/'+id);
+
+}
+
 
 }
