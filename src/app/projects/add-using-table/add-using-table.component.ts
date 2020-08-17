@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewChild, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IProject, IJobType } from 'src/app/_model/project';
 import { ProjectService } from 'src/app/_services/project.service';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CustomerService } from 'src/app/_services/customer.service';
@@ -12,11 +12,24 @@ import { IClient } from 'src/app/_model/client';
 import { IEmployee } from 'src/app/_model/employee';
 import { EmployeeService } from 'src/app/_services/employee.service';
 import { AngularFireStorage, AngularFireUploadTask, AngularFireStorageReference } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
-import { finalize, tap, map } from 'rxjs/operators';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { finalize, tap, map, takeUntil } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FileUploader } from 'ng2-file-upload';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { MatPaginator } from '@angular/material/paginator';
+import { BulkRatecard } from 'src/app/_model/ratecard';
+import { MatTableDataSource } from '@angular/material/table';
+import { RatecardService } from 'src/app/_services/ratecard.service';
+import { MatSelect } from '@angular/material/select';
+
+export interface IGetEmployeedFromTicket {
+  id: number;
+  emp_id: number;
+  project_id:number;
+
+}
+
 @Component({
   selector: 'app-add-using-table',
   templateUrl: './add-using-table.component.html',
@@ -26,27 +39,23 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 export class AddUsingTableComponent implements OnInit {
 
+
+
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadProgress: Observable<number>;
   downloadURL: Observable<string[]>;
   uploadState: Observable<string>;
-
-
   public taskForm: FormGroup;
   customers:ICustomer[];
   clients:IClient[];
   ticket:IProject;
   employees?:IEmployee[];
   jobtype:IJobType[];
-
+  childemployess=[];
+  listofrates=[];
+  listofratesCode=[];
   @ViewChild('editForm',{static:true}) editForm: NgForm;
-
-
-
-  // uploader: FileUploader;
-
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: IProject,
   public crudApi: ProjectService,
     public fb: FormBuilder,
@@ -55,25 +64,48 @@ export class AddUsingTableComponent implements OnInit {
     private cusApi:CustomerService,
     private clientApi:ClientService,
     private empservice:EmployeeService,
-    private afStorage: AngularFireStorage) {
+    private afStorage: AngularFireStorage,
+    private api:RatecardService,) {
 
     }
 
   ngOnInit(): void {
 
+
+    this.api.setValaue(false);
+this.getEmployees();
+
    this.ticket=this.data;
-this.loadJobtype();
+   this.loadJobtype();
 
-
+this.getEmployeesFromTicket();
   }
+
+  getEmployees() {
+    this.empservice.GetEmployeeList().subscribe(response => {
+      this.employees = response as IEmployee[];
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  myForm = new FormGroup({
+    emp_id:new FormControl,
+    startIn: new FormControl(new Date()),
+    endIn: new FormControl(new Date()),
+    frmemployees:new FormControl
+
+
+  });
 
 onsumbitCustomerEdit(){this.loadCustomer();}
 onsumbitClientEdit(){this.loadClient();}
 onsumbitEmplyeeAdd(){this.loadEmployees();}
 
   updateProject(){
-    //alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editForm.value, null, 4));
-    this.crudApi.UpdateProject(this.ticket.id, this.ticket).subscribe(next => {
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.editForm.value, null, 4));
+    console.log(this.editForm.value);
+    this.crudApi.UpdateProject(this.ticket.id, this.editForm.value).subscribe(next => {
 
       this.toastr.success('successfully updated!');
       this.editForm.reset(this.ticket);
@@ -81,6 +113,11 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
     }, error => {
       console.log('error');
     });
+
+  }
+
+  addRates(){
+
 
   }
 
@@ -124,4 +161,18 @@ upload(event) {
   }
 }
 
+getEmployeesFromTicket(){
+
+this.crudApi.getChildren(this.ticket.id).subscribe(data=>{
+  this.childemployess = data.map( (o)=> o.emp_id );
+});
 }
+
+
+displayfromchild(result) {
+  this.listofratesCode.push(result);
+  this.listofrates.push(this.listofratesCode.map( (o)=> o.id));
+}
+
+}
+

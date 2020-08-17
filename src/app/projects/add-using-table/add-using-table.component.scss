@@ -3,6 +3,30 @@ cursor: pointer;
 margin-top: 10px;
 }
 
+table {
+  width: 100%;
+}
+.form-inline .form-group {
+  margin-right:50px;
 
+
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+.mat-row:hover {
+  background-color:lightgray;
+  cursor: pointer;
+}
+
+.example-additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+.mat-form-field {
+width: 100%;
+
+}
 
 

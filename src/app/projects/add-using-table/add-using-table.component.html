@@ -36,12 +36,12 @@
               </div>
 
           <h4>Describtions</h4>
-          <textarea name="description" rows="2" class="form-control"
+          <textarea name="describtion" rows="1" class="form-control"
             [(ngModel)]="ticket.describtion"></textarea>
 
 
             <h4>Remarks</h4>
-          <textarea name="remarks" rows="2" class="form-control"
+          <textarea name="remarks" rows="1" class="form-control"
             [(ngModel)]="ticket.remarks"></textarea>
 
             <div class="row">
@@ -54,11 +54,9 @@
                 <option *ngFor="let itm of customers" [value]="itm.id">
                   {{itm.cus_name}}
                 </option>
-
-
-
                </select>
-             </div>
+              </div>
+
              <div class="col-md-6">
               <h4 (click)="onsumbitClientEdit()">Client is <b>{{ticket.client_name}}</b></h4>
               <select class="form-control" name="client_id"  [(ngModel)]="ticket.client_id" >
@@ -68,23 +66,41 @@
                 </option>
 
                </select>
+
              </div>
             </div>
 
-            <h4 (click)="onsumbitEmplyeeAdd()"><b>Add Employees</b></h4>
-            <select class="form-control" rows="6" name="emp_names" multiple [(ngModel)]="ticket.emp_names" >
-              <option *ngFor="let itm of employees" [value]="itm.id">
-                {{itm.emp_name}} {{itm.lastname}}
-              </option>
-            </select>
+            <div class="row">
+              <div class="col-md-6">
+            <h4><b>Add Employees</b></h4>
 
+            <mat-form-field appearance="fill">
+              <mat-label>Employees</mat-label>
+              <mat-select multiple name="emp_names" [(ngModel)]="childemployess">
 
+                <mat-option *ngFor="let emp of employees" [value]="emp.id">{{emp.emp_name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+                </div>
+                <div class="col-md-6">
+            <h4><b>Add Rates</b></h4>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Rate</mat-label>
+              <mat-select multiple name="rates" [(ngModel)]="listofrates">
+
+                <mat-option *ngFor="let code of listofratesCode" [value]="code">{{code.sor}}*{{code.qty}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+</div>
+            </div>
 
             <div class="d-flex mt-3">
 
               <button type="button"[disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-sm ml-1" (click)="updateProject()">Save Changes</button>
               <button type="button" class="btn btn-danger btn-sm ml-1 mr-1">Delete</button>
               <button mat-button mat-dialog-close>Cancel</button>
+
            </div>
 
 
@@ -94,11 +110,20 @@
 
     </tab>
 
+    <tab heading="Add Rates">
+      <h1 mat-dialog-title>Ticket for {{ticket.address}} - Ticket Number is {{ticket.id}}</h1>
+
+        <app-ratecard (valueChange)='displayfromchild($event)'></app-ratecard>
+
+
+    </tab>
+
     <tab heading="Upload Pictures">
+      <h1 mat-dialog-title>Ticket for {{ticket.address}} - Ticket Number is {{ticket.id}}</h1>
       <div class="container">
         <div class="card">
           <div class="card-header">
-            Firebase Cloud Storage With Angular
+            Upload Pictures
           </div>
           <div class="card-body">
             <h5 class="card-title">Select a file for upload:</h5>

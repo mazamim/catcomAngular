@@ -77,7 +77,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import {
   GoogleLoginProvider,
@@ -89,6 +90,8 @@ import { AddUsingTableComponent } from './projects/add-using-table/add-using-tab
 import { AddJobTypesComponent } from './projects/add-job-types/add-job-types.component';
 import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-ratecard.component';
 import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
+import { OpendialogforQTYComponent } from './projects/opendialogfor-qty/opendialogfor-qty.component';
+
 
 
 
@@ -139,10 +142,7 @@ import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
     AddJobTypesComponent,
     AddBulkRatecardComponent,
     RatecardComponent,
-
-
-
-
+    OpendialogforQTYComponent,
   ],
   imports: [
     BrowserModule,
@@ -181,9 +181,9 @@ import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
     MatGridListModule,
     MatRadioModule,
     MatSelectModule,
-    NgxChartsModule
-
-
+    NgxChartsModule,
+    MatListModule,
+    MatButtonModule
 
   ],
   providers: [

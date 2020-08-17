@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { IProject, IJobType, ICount } from '../_model/project';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IGetEmployeedFromTicket } from '../projects/add-using-table/add-using-table.component';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +68,11 @@ getNumbersforIndexPage(){
 }
 
 
+getChildren(id:number){
 
+  return this.http.get<IGetEmployeedFromTicket[]>(this.baseUrl + 'projectchild/'+id);
+
+}
 
 
 }

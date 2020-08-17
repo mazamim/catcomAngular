@@ -1,115 +1,192 @@
-<section>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
-        <div class="row pt-md-5 mt-md-3 mb-5">
 
-          <div class="col-xl-12">
-            <h4 class="text-muted mb-4">Rate Card</h4>
-
-            <form class="form-inline" [formGroup]="myForm">
-              <div class="form-group">
-                <input type="text"
-                class="form-control"
-                placeholder="Search"
-                (keyup)="applyFilter($event.target.value)"
-                >
-               </div>
-
-              <div class="form-group px-2">
-                <label for="emp_id">Employee Name: </label>
-                <select class="form-control ml-1" style="width: 130px" name="emp_id" formControlName="emp_id">
-                  <option *ngFor="let client of clients" [value]="client.id">
-                    {{client.client_name}}
-                  </option>
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary" style="margin-left:10px" (click)="onSumbit()">Apply Filters</button>
-              <button type="button" class="btn btn-info"  style="margin-left:10px">Reset Filter</button>
-              <div class="btn-group btn-sm mr-auto" dropdown>
-                <button id="button-basic" dropdownToggle type="button" class="btn btn-danger dropdown-toggle"
-                        aria-controls="dropdown-basic">
-                  Export As <span class="caret"></span>
-                </button>
-                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
-                    role="menu" aria-labelledby="button-basic">
-                  <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="exporter.exportTable('xls')" >Excel</a></li>
-                  <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="exporter.exportTable('txt')">Text</a></li>
-                  <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="exporter.exportTable('json')">JSON</a></li>
-
-                  <li class="divider dropdown-divider"></li>
-
-                </ul>
-              </div>
-
-            </form>
-            <br>
+<ng-template [ngIf]="rateSource$ | async" [ngIfElse]="notShowBlock">
 
 
-            <div class="mat-elevation-z8">
+  <section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-10 col-lg-7 col-md-6 ml-auto">
+          <div class="row pt-md-5 mt-md-3 mb-5">
+
+            <div class="col-xl-12">
+              <h4 class="text-muted mb-4">Rate Card</h4>
+
+              <form class="form-inline" [formGroup]="myForm">
+                <div class="form-group">
+                  <input type="text"
+                  class="form-control"
+                  placeholder="Search"
+                  (keyup)="applyFilter($event.target.value)"
+                  >
+                 </div>
+
+                <div class="form-group px-2">
+                  <label for="emp_id">Employee Name: </label>
+                  <select class="form-control ml-1" style="width: 130px" name="emp_id" formControlName="emp_id">
+                    <option *ngFor="let client of clients" [value]="client.id">
+                      {{client.client_name}}
+                    </option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-left:10px" (click)="onSumbit()">Apply Filters</button>
+                <button type="button" class="btn btn-info"  style="margin-left:10px">Reset Filter</button>
+                <div class="btn-group btn-sm mr-auto" dropdown>
+                  <button id="button-basic" dropdownToggle type="button" class="btn btn-danger dropdown-toggle"
+                          aria-controls="dropdown-basic">
+                    Export As <span class="caret"></span>
+                  </button>
+                  <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                      role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="exporter.exportTable('xls')" >Excel</a></li>
+                    <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="exporter.exportTable('txt')">Text</a></li>
+                    <li role="menuitem" style="cursor: pointer;"><a class="dropdown-item" (click)="exporter.exportTable('json')">JSON</a></li>
+
+                    <li class="divider dropdown-divider"></li>
+
+                  </ul>
+                </div>
+
+              </form>
+              <br>
 
 
-              <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter">
+              <div class="mat-elevation-z8">
 
-                <!-- Position Column -->
-                <ng-container matColumnDef="category">
-                  <th mat-header-cell *matHeaderCellDef> Category </th>
-                  <td mat-cell *matCellDef="let element"> {{element.category}} </td>
-                </ng-container>
 
-                <!-- Name Column -->
-                <ng-container matColumnDef="sor">
-                  <th mat-header-cell *matHeaderCellDef> SOR </th>
-                  <td mat-cell *matCellDef="let element"> {{element.sor}} </td>
-                </ng-container>
+                <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter">
 
-                <!-- Weight Column -->
-                <ng-container matColumnDef="description">
-                  <th mat-header-cell *matHeaderCellDef> Description </th>
-                  <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-                </ng-container>
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="category">
+                    <th mat-header-cell *matHeaderCellDef> Category </th>
+                    <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                  </ng-container>
 
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="uom">
-                  <th mat-header-cell *matHeaderCellDef> UOM </th>
-                  <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
-                </ng-container>
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="sor">
+                    <th mat-header-cell *matHeaderCellDef> SOR </th>
+                    <td mat-cell *matCellDef="let element"> {{element.sor}} </td>
+                  </ng-container>
 
-                 <!-- Symbol Column -->
-                      <ng-container matColumnDef="rate">
-                        <th mat-header-cell *matHeaderCellDef> Rate</th>
-                        <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
-                      </ng-container>
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                  </ng-container>
 
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="client_id">
-                          <th mat-header-cell *matHeaderCellDef> Client</th>
-                          <td mat-cell *matCellDef="let element"> {{element.client_id}} </td>
+                  <!-- Symbol Column -->
+                  <ng-container matColumnDef="uom">
+                    <th mat-header-cell *matHeaderCellDef> UOM </th>
+                    <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
+                  </ng-container>
+
+                   <!-- Symbol Column -->
+                        <ng-container matColumnDef="rate">
+                          <th mat-header-cell *matHeaderCellDef> Rate</th>
+                          <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
                         </ng-container>
 
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                (click)="onRowClicked(row)"></tr>
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="client_id">
+                            <th mat-header-cell *matHeaderCellDef> Client</th>
+                            <td mat-cell *matCellDef="let element"> {{element.client_id}} </td>
+                          </ng-container>
 
-              </table>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                  (click)="onRowClicked(row)"></tr>
 
-              <mat-paginator
-              [pageSizeOptions]="[20, 50, 100]"
-              showFirstLastButtons
+                </table>
 
-              >
-            </mat-paginator>
+                <mat-paginator
+                [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons
+
+                >
+              </mat-paginator>
+              </div>
+
+
+
             </div>
 
 
-
           </div>
-
-
         </div>
       </div>
-    </div>
 
+    </div>
+  </section>
+</ng-template>
+
+
+
+<ng-template #notShowBlock>
+
+  <form class="form-inline" [formGroup]="myForm">
+    <div class="form-group">
+      <input type="text"
+      class="form-control"
+      placeholder="Search"
+      (keyup)="applyFilter($event.target.value)"
+      >
+     </div>
+
+     </form>
+  <div class="mat-elevation-z8">
+
+
+    <table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef> Category </th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="sor">
+        <th mat-header-cell *matHeaderCellDef> SOR </th>
+        <td mat-cell *matCellDef="let element"> {{element.sor}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="uom">
+        <th mat-header-cell *matHeaderCellDef> UOM </th>
+        <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
+      </ng-container>
+
+       <!-- Symbol Column -->
+            <ng-container matColumnDef="rate">
+              <th mat-header-cell *matHeaderCellDef> Rate</th>
+              <td mat-cell *matCellDef="let element"> {{element.rate}} </td>
+            </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="client_id">
+                <th mat-header-cell *matHeaderCellDef> Client</th>
+                <td mat-cell *matCellDef="let element"> {{element.client_id}} </td>
+              </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="openDialog(row)"></tr>
+
+    </table>
+
+    <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+
+    >
+  </mat-paginator>
   </div>
-</section>
+
+</ng-template>
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RatecardService } from 'src/app/_services/ratecard.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +14,8 @@ export class NavbarComponent implements OnInit {
     'And another choice for you.',
     'but wait! A third!'
   ];
-  constructor() { }
+  constructor(private api:RatecardService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +38,12 @@ export class NavbarComponent implements OnInit {
   }
   isOpenChange(): void {
     console.log('Dropdown state is changed');
+  }
+
+  ratecardclicked()
+  {
+    this.api.setValaue(true);
+    this.router.navigate(['/ratecard']);
   }
 
 }
