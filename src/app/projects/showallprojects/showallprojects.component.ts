@@ -10,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ProjectsAddComponent } from '../projects-add/projects-add.component';
 import { AddUsingTableComponent } from '../add-using-table/add-using-table.component';
+import { datepickerAnimation } from 'ngx-bootstrap/datepicker/datepicker-animations';
 
 
 @Component({
@@ -42,10 +43,20 @@ export class ShowallprojectsComponent implements OnInit {
     this.getAllData();
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
   }
+  onChange(result){
+    //alert('SUCCESS!! :-)\n\n' + JSON.stringify(result, null, 4));
+    this.api.GetProjectList(result).subscribe(data=>{
+      this.dataSource.data = data as IProject[]
+
+       });
+
+  }
+
   public getAllData(){
 
-    this.api.GetProjectList().subscribe(data=>{
+    this.api.GetProjectList('Assigned').subscribe(data=>{
     this.dataSource.data = data as IProject[]
 
      });

@@ -89,7 +89,7 @@
               <mat-label>Rate</mat-label>
               <mat-select multiple name="rates" [(ngModel)]="listofrates">
 
-                <mat-option *ngFor="let code of listofratesCode" [value]="code">{{code.sor}}*{{code.qty}}</mat-option>
+                <mat-option *ngFor="let code of listofratesCode" [value]="code" >{{code.sor}}*{{code.qty}}</mat-option>
               </mat-select>
             </mat-form-field>
 </div>

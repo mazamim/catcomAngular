@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RatecardService } from 'src/app/_services/ratecard.service';
 import { Router } from '@angular/router';
+import { ProjectService } from 'src/app/_services/project.service';
+import { ICount } from 'src/app/_model/project';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { CommonService } from 'src/app/_services/common.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +13,16 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   status=false;
-  items: string[] = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
+;
+
+
   constructor(private api:RatecardService,
-    private router: Router) { }
+    private router: Router,
+    public  common:CommonService) { }
 
   ngOnInit(): void {
+
+this.common.getcount();
   }
   logIn() {}
 
@@ -45,6 +50,7 @@ export class NavbarComponent implements OnInit {
     this.api.setValaue(true);
     this.router.navigate(['/ratecard']);
   }
+
 
 }
 

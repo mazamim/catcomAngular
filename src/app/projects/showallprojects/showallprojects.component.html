@@ -42,10 +42,13 @@
 
               <div class="form-group px-2">
                 <label for="emp_id">Employee Name: </label>
-                <select class="form-control ml-1" style="width: 130px" name="emp_id" formControlName="emp_id">
-                  <option>
-                    all
-                  </option>
+                <select class="form-control ml-1" style="width: 130px" name="emp_id" formControlName="emp_id" (change)="onChange($event.target.value)">
+                  <option>All_Jobs</option>
+                  <option>Assigned</option>
+                  <option>Pending</option>
+                  <option>Completed_not_Closed</option>
+                  <option>Completed_not_Invoiced</option>
+                  <option>Completed_and_Invoice_Updated</option>
 
                 </select>
               </div>

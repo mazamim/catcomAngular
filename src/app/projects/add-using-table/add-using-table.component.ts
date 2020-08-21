@@ -22,6 +22,7 @@ import { BulkRatecard } from 'src/app/_model/ratecard';
 import { MatTableDataSource } from '@angular/material/table';
 import { RatecardService } from 'src/app/_services/ratecard.service';
 import { MatSelect } from '@angular/material/select';
+import { CommonService } from 'src/app/_services/common.service';
 
 export interface IGetEmployeedFromTicket {
   id: number;
@@ -57,6 +58,8 @@ export class AddUsingTableComponent implements OnInit {
   listofratesCode=[];
 
   @ViewChild('editForm',{static:true}) editForm: NgForm;
+ // @ViewChild('rates',{static:true}) rates: MatSelect;
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: IProject,
   public crudApi: ProjectService,
     public fb: FormBuilder,
@@ -66,20 +69,22 @@ export class AddUsingTableComponent implements OnInit {
     private clientApi:ClientService,
     private empservice:EmployeeService,
     private afStorage: AngularFireStorage,
-    private api:RatecardService,) {
+    private api:RatecardService,
+    private common:CommonService) {
 
     }
 
   ngOnInit(): void {
 
 
-    this.api.setValaue(false);
+this.api.setValaue(false);
 this.getEmployees();
 
    this.ticket=this.data;
    this.loadJobtype();
 
 this.getEmployeesFromTicket();
+this.displayFromchildExisting();
 
   }
 
@@ -111,9 +116,10 @@ onsumbitEmplyeeAdd(){this.loadEmployees();}
 
       this.toastr.success('successfully updated!');
       this.editForm.reset(this.ticket);
+      this.common.getcount();
       this.cusApi.refresh();
     }, error => {
-      console.log('error');
+      alert('ERROR!! :-)\n\n' + JSON.stringify(error.message, null, 4));
     });
 
   }
@@ -172,13 +178,13 @@ displayfromchild(result) {
   this.listofrates.push(this.listofratesCode.map( (o)=> o.id));
 }
 
-// displayFromchildExisting(){
-// this.crudApi.ratechildbyproject(this.ticket.id).subscribe(data=>{
-//  this.listofratesCode = data as any[];
-//  this.listofrates = this.listofratesCode.map( (o)=> o.id);
-// })
+displayFromchildExisting(){
+this.crudApi.ratechildbyproject(this.ticket.id).subscribe(data=>{
+ this.listofratesCode = data as any[];
+ this.listofrates = this.listofratesCode.map( (o)=> o.id);
+})
 
-// }
+}
 
 }
 

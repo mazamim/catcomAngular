@@ -92,7 +92,7 @@ import { AddBulkRatecardComponent } from './ratecard/add-bulk-ratecard/add-bulk-
 import { RatecardComponent } from './ratecard/ratecard/ratecard.component';
 import { OpendialogforQTYComponent } from './projects/opendialogfor-qty/opendialogfor-qty.component';
 
-
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 
 
@@ -188,6 +188,7 @@ import { OpendialogforQTYComponent } from './projects/opendialogfor-qty/opendial
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://127.0.0.1:8000/api/',
+  apiUrl: 'http://system.catcom.com.au/laravel/api/',
   firebase: {
     apiKey: "AIzaSyCWhXpMeqOwDG3oC6bt8DxbAzSW_e3puJw",
   authDomain: "catcom-2cc95.firebaseapp.com",

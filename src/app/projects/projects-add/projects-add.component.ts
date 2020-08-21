@@ -80,7 +80,7 @@ this.customers=data;
     this.crudApi.AddProject(this.taskForm.value).subscribe((data=>{
       this.toastr.success('successfully Added!');
       this.cusApi.refresh();
-      this.crudApi.GetProjectList();
+      this.crudApi.GetProjectList('Assigned');
     }));
 
     this.ResetForm();

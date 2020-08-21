@@ -12,9 +12,9 @@ export class ProjectService {
   baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  GetProjectList(){
+  GetProjectList(status:string){
 
-    return this.http.get<IProject[]>(this.baseUrl + 'projects');
+    return this.http.get<IProject[]>(this.baseUrl + 'projects/'+status);
   }
 
   GetProjectListforindex(){

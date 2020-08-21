@@ -33,7 +33,7 @@ export class ProgresstasklistComponent implements OnInit {
 
   public getAllData(){
 
-    this.crudApi.GetProjectList().subscribe(data=>{
+    this.crudApi.GetProjectList('Assigned').subscribe(data=>{
       this.employees = data as IProject[];
       this.totalRec = this.employees.length;
 
